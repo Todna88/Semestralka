@@ -7,7 +7,7 @@
 struct node *node_alloc(const size_t data_size){
     struct node *new_node;
     
-    new_node = malloc(new_node);
+    new_node = malloc(sizeof(*new_node));
 
     if (!new_node){
         return NULL;
@@ -60,7 +60,7 @@ void node_dealloc(struct node **n){
     node_deinit(*n);
 
     free(*n);
-    *n = NULL; 
+    *n = NULL;
 }
 
 int node_add_data(struct node *n, const void *data, const size_t data_size){

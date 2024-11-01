@@ -1,0 +1,9 @@
+# ninja log v6
+2	300	7522008885808186	CMakeFiles/stack.dir/src/stack_check.c.obj	ff3865fd5d6457d0
+9	355	7522008885893038	CMakeFiles/stack.dir/src/node/node.c.obj	15845108a8581c19
+6	361	7522008885861074	CMakeFiles/stack.dir/src/stack/stack.c.obj	dfe79bf43658be8b
+361	515	7522008889392030	stack.exe	c0547df2f50346ec
+17	130	7522008953140370	CMakeFiles/stack.dir/src/stack_check.c.obj	ff3865fd5d6457d0
+23	144	7522008953210050	CMakeFiles/stack.dir/src/node/node.c.obj	15845108a8581c19
+20	149	7522008953180011	CMakeFiles/stack.dir/src/stack/stack.c.obj	dfe79bf43658be8b
+149	268	7522008954464569	stack.exe	c0547df2f50346ec

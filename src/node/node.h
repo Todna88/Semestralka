@@ -6,8 +6,8 @@
  * \date 2024-10-31
  */
 
-#ifndef NODE.H
-#define NODE.H
+#ifndef NODE_H
+#define NODE_H
 
 #include <stddef.h>
 

@@ -6,8 +6,8 @@
  * \date 2024-10-31
  */
 
-#ifndef STACK.H
-#define STACK.H
+#ifndef STACK_H
+#define STACK_H
 
 #include <stddef.h>
 

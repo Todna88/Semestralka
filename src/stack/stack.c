@@ -1,5 +1,5 @@
 #include "stack.h"
-#include "node.h"
+#include "../node/node.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -8,7 +8,7 @@
 struct stack *stack_alloc(const size_t data_size){
     struct stack *new_stack;
 
-    new_stack = malloc(sizeof(struct stack));
+    new_stack = malloc(sizeof(*new_stack));
 
     if (!new_stack){
         return NULL;
@@ -45,7 +45,7 @@ void stack_deinit(struct stack *s){
 
     while (s->top != NULL){
         tmp = s->top->next;
-        node_dealloc(s->top);
+        node_dealloc(&(s->top));
         s->top = tmp;
     }
 
@@ -101,7 +101,7 @@ int stack_pop(struct stack *s, void *data){
     }
 
     tmp = s->top ->next;
-    node_dealloc(s->top);
+    node_dealloc(&(s->top));
     s->top = tmp;
     s->item_count--;
     return 1;

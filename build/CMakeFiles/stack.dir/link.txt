@@ -1,0 +1,1 @@
+/usr/bin/gcc -Wall -Wextra -pedantic -ansi -g CMakeFiles/stack.dir/src/stack_check.c.o CMakeFiles/stack.dir/src/stack/stack.c.o CMakeFiles/stack.dir/src/node/node.c.o -o stack 
