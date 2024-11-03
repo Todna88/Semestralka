@@ -49,11 +49,11 @@ cmake_ninja_workdir = D$:/Škola/FAV/ZS_02/pc/Semestralka/build/
 
 build cmake_object_order_depends_target_stack: phony || .
 
-build CMakeFiles/stack.dir/src/stack_check.c.obj: C_COMPILER__stack_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/stack_check.c || cmake_object_order_depends_target_stack
-  DEP_FILE = CMakeFiles\stack.dir\src\stack_check.c.obj.d
+build CMakeFiles/stack.dir/src/stack/stack_check.c.obj: C_COMPILER__stack_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack_check.c || cmake_object_order_depends_target_stack
+  DEP_FILE = CMakeFiles\stack.dir\src\stack\stack_check.c.obj.d
   FLAGS = -Wall -Wextra -pedantic -ansi -g
   OBJECT_DIR = CMakeFiles\stack.dir
-  OBJECT_FILE_DIR = CMakeFiles\stack.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\stack.dir\src\stack
   TARGET_COMPILE_PDB = CMakeFiles\stack.dir\
   TARGET_PDB = stack.pdb
 
@@ -81,7 +81,7 @@ build CMakeFiles/stack.dir/src/node/node.c.obj: C_COMPILER__stack_unscanned_Debu
 #############################################
 # Link the executable stack.exe
 
-build stack.exe: C_EXECUTABLE_LINKER__stack_Debug CMakeFiles/stack.dir/src/stack_check.c.obj CMakeFiles/stack.dir/src/stack/stack.c.obj CMakeFiles/stack.dir/src/node/node.c.obj
+build stack.exe: C_EXECUTABLE_LINKER__stack_Debug CMakeFiles/stack.dir/src/stack/stack_check.c.obj CMakeFiles/stack.dir/src/stack/stack.c.obj CMakeFiles/stack.dir/src/node/node.c.obj
   FLAGS = -Wall -Wextra -pedantic -ansi -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\stack.dir

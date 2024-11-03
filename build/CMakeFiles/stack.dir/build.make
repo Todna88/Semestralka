@@ -69,19 +69,19 @@ include CMakeFiles/stack.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/stack.dir/flags.make
 
-CMakeFiles/stack.dir/src/stack_check.c.o: CMakeFiles/stack.dir/flags.make
-CMakeFiles/stack.dir/src/stack_check.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack_check.c
-CMakeFiles/stack.dir/src/stack_check.c.o: CMakeFiles/stack.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/stack.dir/src/stack_check.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/stack.dir/src/stack_check.c.o -MF CMakeFiles/stack.dir/src/stack_check.c.o.d -o CMakeFiles/stack.dir/src/stack_check.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack_check.c
+CMakeFiles/stack.dir/src/stack/stack_check.c.o: CMakeFiles/stack.dir/flags.make
+CMakeFiles/stack.dir/src/stack/stack_check.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack_check.c
+CMakeFiles/stack.dir/src/stack/stack_check.c.o: CMakeFiles/stack.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/stack.dir/src/stack/stack_check.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/stack.dir/src/stack/stack_check.c.o -MF CMakeFiles/stack.dir/src/stack/stack_check.c.o.d -o CMakeFiles/stack.dir/src/stack/stack_check.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack_check.c
 
-CMakeFiles/stack.dir/src/stack_check.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/stack.dir/src/stack_check.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack_check.c > CMakeFiles/stack.dir/src/stack_check.c.i
+CMakeFiles/stack.dir/src/stack/stack_check.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/stack.dir/src/stack/stack_check.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack_check.c > CMakeFiles/stack.dir/src/stack/stack_check.c.i
 
-CMakeFiles/stack.dir/src/stack_check.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/stack.dir/src/stack_check.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack_check.c -o CMakeFiles/stack.dir/src/stack_check.c.s
+CMakeFiles/stack.dir/src/stack/stack_check.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/stack.dir/src/stack/stack_check.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack_check.c -o CMakeFiles/stack.dir/src/stack/stack_check.c.s
 
 CMakeFiles/stack.dir/src/stack/stack.c.o: CMakeFiles/stack.dir/flags.make
 CMakeFiles/stack.dir/src/stack/stack.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c
@@ -113,14 +113,14 @@ CMakeFiles/stack.dir/src/node/node.c.s: cmake_force
 
 # Object files for target stack
 stack_OBJECTS = \
-"CMakeFiles/stack.dir/src/stack_check.c.o" \
+"CMakeFiles/stack.dir/src/stack/stack_check.c.o" \
 "CMakeFiles/stack.dir/src/stack/stack.c.o" \
 "CMakeFiles/stack.dir/src/node/node.c.o"
 
 # External object files for target stack
 stack_EXTERNAL_OBJECTS =
 
-stack: CMakeFiles/stack.dir/src/stack_check.c.o
+stack: CMakeFiles/stack.dir/src/stack/stack_check.c.o
 stack: CMakeFiles/stack.dir/src/stack/stack.c.o
 stack: CMakeFiles/stack.dir/src/node/node.c.o
 stack: CMakeFiles/stack.dir/build.make

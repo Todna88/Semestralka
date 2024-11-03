@@ -3,8 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/stack.dir/src/node/node.c.o.d"
   "CMakeFiles/stack.dir/src/stack/stack.c.o"
   "CMakeFiles/stack.dir/src/stack/stack.c.o.d"
-  "CMakeFiles/stack.dir/src/stack_check.c.o"
-  "CMakeFiles/stack.dir/src/stack_check.c.o.d"
+  "CMakeFiles/stack.dir/src/stack/stack_check.c.o"
+  "CMakeFiles/stack.dir/src/stack/stack_check.c.o.d"
   "stack"
   "stack.pdb"
 )

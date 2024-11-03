@@ -4,7 +4,7 @@ project(Semestralka LANGUAGES C)
 set(CMAKE_C_FLAGS "-Wall -Wextra -pedantic -ansi")
 
 add_executable(stack
-    src/stack_check.c
+    src/stack/stack_check.c
     # Podadresář s implementací zásobníku.
     src/stack/stack.c
     src/node/node.c

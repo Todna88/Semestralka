@@ -1,0 +1,1 @@
+/usr/bin/gcc -Wall -Wextra -pedantic -ansi -g CMakeFiles/queue.dir/src/queue/queue_check.c.o CMakeFiles/queue.dir/src/queue/queue.c.o CMakeFiles/queue.dir/src/node/node.c.o -o queue 

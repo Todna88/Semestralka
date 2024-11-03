@@ -1,4 +1,4 @@
-#include "stack/stack.h"
+#include "stack.h"
 
 #include"stdlib.h"
 #include"stdio.h"
@@ -6,9 +6,10 @@
 #define STACK_SIZE 10000
 
 int main(){
-    int i;
+    typedef int stack_type;
+    stack_type i;
     struct stack *stack;
-    int result;
+    stack_type result;
 
     stack = stack_alloc(sizeof(i));
     for (i = 0; i < STACK_SIZE; ++i){
@@ -20,6 +21,7 @@ int main(){
         printf("%d\n", result);
     }
 
+    printf("\nNumber of items: %lu\n", stack->item_count);
     stack_dealloc(&stack);
     
     return EXIT_SUCCESS;

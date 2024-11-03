@@ -177,29 +177,29 @@ src/stack/stack.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack.c.s
 .PHONY : src/stack/stack.c.s
 
-src/stack_check.o: src/stack_check.c.o
-.PHONY : src/stack_check.o
+src/stack/stack_check.o: src/stack/stack_check.c.o
+.PHONY : src/stack/stack_check.o
 
 # target to build an object file
-src/stack_check.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack_check.c.o
-.PHONY : src/stack_check.c.o
+src/stack/stack_check.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack_check.c.o
+.PHONY : src/stack/stack_check.c.o
 
-src/stack_check.i: src/stack_check.c.i
-.PHONY : src/stack_check.i
+src/stack/stack_check.i: src/stack/stack_check.c.i
+.PHONY : src/stack/stack_check.i
 
 # target to preprocess a source file
-src/stack_check.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack_check.c.i
-.PHONY : src/stack_check.c.i
+src/stack/stack_check.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack_check.c.i
+.PHONY : src/stack/stack_check.c.i
 
-src/stack_check.s: src/stack_check.c.s
-.PHONY : src/stack_check.s
+src/stack/stack_check.s: src/stack/stack_check.c.s
+.PHONY : src/stack/stack_check.s
 
 # target to generate assembly for a file
-src/stack_check.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack_check.c.s
-.PHONY : src/stack_check.c.s
+src/stack/stack_check.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack_check.c.s
+.PHONY : src/stack/stack_check.c.s
 
 # Help Target
 help:
@@ -216,9 +216,9 @@ help:
 	@echo "... src/stack/stack.o"
 	@echo "... src/stack/stack.i"
 	@echo "... src/stack/stack.s"
-	@echo "... src/stack_check.o"
-	@echo "... src/stack_check.i"
-	@echo "... src/stack_check.s"
+	@echo "... src/stack/stack_check.o"
+	@echo "... src/stack/stack_check.i"
+	@echo "... src/stack/stack_check.s"
 .PHONY : help
 
 

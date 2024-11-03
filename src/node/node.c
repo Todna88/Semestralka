@@ -32,6 +32,7 @@ int node_init(struct node *n, const size_t data_size){
         return 0;
     }
 
+    n->data_size = data_size;
     n->next = NULL;
 
     return 1;   
@@ -42,6 +43,7 @@ void node_deinit(struct node *n){
         return;
     }
 
+    n->data_size = 0;
     n->next = NULL;
 
     if(n->data){
@@ -63,12 +65,12 @@ void node_dealloc(struct node **n){
     *n = NULL;
 }
 
-int node_add_data(struct node *n, const void *data, const size_t data_size){
+int node_add_data(struct node *n, const void *data){
     if(!n || !data){
         return 0;
     }
 
-    memcpy(n->data, data, data_size);
+    memcpy(n->data, data, n->data_size);
 
     return 1;
 }
@@ -85,7 +87,7 @@ struct node *create_node(const size_t data_size, const void *data){
         return NULL;
     }
 
-    if(!node_add_data(new_node, data, data_size)){
+    if(!node_add_data(new_node, data)){
         return NULL;
     }
 

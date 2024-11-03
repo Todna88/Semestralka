@@ -1,9 +1,9 @@
 [
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\stack.dir\\src\\stack_check.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack_check.c",
-  "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack_check.c",
-  "output": "CMakeFiles\\stack.dir\\src\\stack_check.c.obj"
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\stack.dir\\src\\stack\\stack_check.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack\\stack_check.c",
+  "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack\\stack_check.c",
+  "output": "CMakeFiles\\stack.dir\\src\\stack\\stack_check.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",

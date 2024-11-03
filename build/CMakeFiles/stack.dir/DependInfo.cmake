@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c" "CMakeFiles/stack.dir/src/node/node.c.o" "gcc" "CMakeFiles/stack.dir/src/node/node.c.o.d"
   "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c" "CMakeFiles/stack.dir/src/stack/stack.c.o" "gcc" "CMakeFiles/stack.dir/src/stack/stack.c.o.d"
-  "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack_check.c" "CMakeFiles/stack.dir/src/stack_check.c.o" "gcc" "CMakeFiles/stack.dir/src/stack_check.c.o.d"
+  "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack_check.c" "CMakeFiles/stack.dir/src/stack/stack_check.c.o" "gcc" "CMakeFiles/stack.dir/src/stack/stack_check.c.o.d"
   )
 
 # Targets to which this target links.
