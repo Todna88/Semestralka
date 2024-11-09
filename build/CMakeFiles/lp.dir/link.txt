@@ -1,0 +1,1 @@
+/usr/bin/gcc -Wall -Wextra -pedantic -ansi -g CMakeFiles/lp.dir/src/lp.c.o CMakeFiles/lp.dir/src/file_proces/file_proces.c.o CMakeFiles/lp.dir/src/flags/flags.c.o CMakeFiles/lp.dir/src/file_proces/label/label.c.o CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.o -o lp 

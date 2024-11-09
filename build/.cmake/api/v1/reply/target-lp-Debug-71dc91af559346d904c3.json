@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "stack.exe"
+			"path" : "lp.exe"
 		},
 		{
-			"path" : "stack.pdb"
+			"path" : "lp.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -46,11 +46,13 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3,
+				4
 			]
 		}
 	],
-	"id" : "stack::@6890427a1f51a3e7e1df",
+	"id" : "lp::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -70,8 +72,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "stack",
-	"nameOnDisk" : "stack.exe",
+	"name" : "lp",
+	"nameOnDisk" : "lp.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -85,7 +87,9 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3,
+				4
 			]
 		}
 	],
@@ -94,19 +98,31 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/stack/stack_check.c",
+			"path" : "src/lp.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/stack/stack.c",
+			"path" : "src/file_proces/file_proces.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/node/node.c",
+			"path" : "src/flags/flags.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/file_proces/label/label.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/file_proces/label/generals/generals.c",
 			"sourceGroupIndex" : 0
 		}
 	],

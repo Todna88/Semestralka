@@ -117,89 +117,137 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named stack
+# Target rules for targets named lp
 
 # Build rule for target.
-stack: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stack
-.PHONY : stack
+lp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lp
+.PHONY : lp
 
 # fast build rule for target.
-stack/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/build
-.PHONY : stack/fast
+lp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/build
+.PHONY : lp/fast
 
-src/node/node.o: src/node/node.c.o
-.PHONY : src/node/node.o
-
-# target to build an object file
-src/node/node.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/node/node.c.o
-.PHONY : src/node/node.c.o
-
-src/node/node.i: src/node/node.c.i
-.PHONY : src/node/node.i
-
-# target to preprocess a source file
-src/node/node.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/node/node.c.i
-.PHONY : src/node/node.c.i
-
-src/node/node.s: src/node/node.c.s
-.PHONY : src/node/node.s
-
-# target to generate assembly for a file
-src/node/node.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/node/node.c.s
-.PHONY : src/node/node.c.s
-
-src/stack/stack.o: src/stack/stack.c.o
-.PHONY : src/stack/stack.o
+src/file_proces/file_proces.o: src/file_proces/file_proces.c.o
+.PHONY : src/file_proces/file_proces.o
 
 # target to build an object file
-src/stack/stack.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack.c.o
-.PHONY : src/stack/stack.c.o
+src/file_proces/file_proces.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/file_proces.c.o
+.PHONY : src/file_proces/file_proces.c.o
 
-src/stack/stack.i: src/stack/stack.c.i
-.PHONY : src/stack/stack.i
+src/file_proces/file_proces.i: src/file_proces/file_proces.c.i
+.PHONY : src/file_proces/file_proces.i
 
 # target to preprocess a source file
-src/stack/stack.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack.c.i
-.PHONY : src/stack/stack.c.i
+src/file_proces/file_proces.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/file_proces.c.i
+.PHONY : src/file_proces/file_proces.c.i
 
-src/stack/stack.s: src/stack/stack.c.s
-.PHONY : src/stack/stack.s
+src/file_proces/file_proces.s: src/file_proces/file_proces.c.s
+.PHONY : src/file_proces/file_proces.s
 
 # target to generate assembly for a file
-src/stack/stack.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack.c.s
-.PHONY : src/stack/stack.c.s
+src/file_proces/file_proces.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/file_proces.c.s
+.PHONY : src/file_proces/file_proces.c.s
 
-src/stack/stack_check.o: src/stack/stack_check.c.o
-.PHONY : src/stack/stack_check.o
+src/file_proces/label/generals/generals.o: src/file_proces/label/generals/generals.c.o
+.PHONY : src/file_proces/label/generals/generals.o
 
 # target to build an object file
-src/stack/stack_check.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack_check.c.o
-.PHONY : src/stack/stack_check.c.o
+src/file_proces/label/generals/generals.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.o
+.PHONY : src/file_proces/label/generals/generals.c.o
 
-src/stack/stack_check.i: src/stack/stack_check.c.i
-.PHONY : src/stack/stack_check.i
+src/file_proces/label/generals/generals.i: src/file_proces/label/generals/generals.c.i
+.PHONY : src/file_proces/label/generals/generals.i
 
 # target to preprocess a source file
-src/stack/stack_check.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack_check.c.i
-.PHONY : src/stack/stack_check.c.i
+src/file_proces/label/generals/generals.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.i
+.PHONY : src/file_proces/label/generals/generals.c.i
 
-src/stack/stack_check.s: src/stack/stack_check.c.s
-.PHONY : src/stack/stack_check.s
+src/file_proces/label/generals/generals.s: src/file_proces/label/generals/generals.c.s
+.PHONY : src/file_proces/label/generals/generals.s
 
 # target to generate assembly for a file
-src/stack/stack_check.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/src/stack/stack_check.c.s
-.PHONY : src/stack/stack_check.c.s
+src/file_proces/label/generals/generals.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.s
+.PHONY : src/file_proces/label/generals/generals.c.s
+
+src/file_proces/label/label.o: src/file_proces/label/label.c.o
+.PHONY : src/file_proces/label/label.o
+
+# target to build an object file
+src/file_proces/label/label.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/label.c.o
+.PHONY : src/file_proces/label/label.c.o
+
+src/file_proces/label/label.i: src/file_proces/label/label.c.i
+.PHONY : src/file_proces/label/label.i
+
+# target to preprocess a source file
+src/file_proces/label/label.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/label.c.i
+.PHONY : src/file_proces/label/label.c.i
+
+src/file_proces/label/label.s: src/file_proces/label/label.c.s
+.PHONY : src/file_proces/label/label.s
+
+# target to generate assembly for a file
+src/file_proces/label/label.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/label.c.s
+.PHONY : src/file_proces/label/label.c.s
+
+src/flags/flags.o: src/flags/flags.c.o
+.PHONY : src/flags/flags.o
+
+# target to build an object file
+src/flags/flags.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/flags/flags.c.o
+.PHONY : src/flags/flags.c.o
+
+src/flags/flags.i: src/flags/flags.c.i
+.PHONY : src/flags/flags.i
+
+# target to preprocess a source file
+src/flags/flags.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/flags/flags.c.i
+.PHONY : src/flags/flags.c.i
+
+src/flags/flags.s: src/flags/flags.c.s
+.PHONY : src/flags/flags.s
+
+# target to generate assembly for a file
+src/flags/flags.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/flags/flags.c.s
+.PHONY : src/flags/flags.c.s
+
+src/lp.o: src/lp.c.o
+.PHONY : src/lp.o
+
+# target to build an object file
+src/lp.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/lp.c.o
+.PHONY : src/lp.c.o
+
+src/lp.i: src/lp.c.i
+.PHONY : src/lp.i
+
+# target to preprocess a source file
+src/lp.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/lp.c.i
+.PHONY : src/lp.c.i
+
+src/lp.s: src/lp.c.s
+.PHONY : src/lp.s
+
+# target to generate assembly for a file
+src/lp.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/lp.c.s
+.PHONY : src/lp.c.s
 
 # Help Target
 help:
@@ -209,16 +257,22 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... stack"
-	@echo "... src/node/node.o"
-	@echo "... src/node/node.i"
-	@echo "... src/node/node.s"
-	@echo "... src/stack/stack.o"
-	@echo "... src/stack/stack.i"
-	@echo "... src/stack/stack.s"
-	@echo "... src/stack/stack_check.o"
-	@echo "... src/stack/stack_check.i"
-	@echo "... src/stack/stack_check.s"
+	@echo "... lp"
+	@echo "... src/file_proces/file_proces.o"
+	@echo "... src/file_proces/file_proces.i"
+	@echo "... src/file_proces/file_proces.s"
+	@echo "... src/file_proces/label/generals/generals.o"
+	@echo "... src/file_proces/label/generals/generals.i"
+	@echo "... src/file_proces/label/generals/generals.s"
+	@echo "... src/file_proces/label/label.o"
+	@echo "... src/file_proces/label/label.i"
+	@echo "... src/file_proces/label/label.s"
+	@echo "... src/flags/flags.o"
+	@echo "... src/flags/flags.i"
+	@echo "... src/flags/flags.s"
+	@echo "... src/lp.o"
+	@echo "... src/lp.i"
+	@echo "... src/lp.s"
 .PHONY : help
 
 

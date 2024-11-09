@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/stack.dir/all
+all: CMakeFiles/lp.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/stack.dir/clean
+clean: CMakeFiles/lp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/stack.dir
+# Target rules for target CMakeFiles/lp.dir
 
 # All Build rule for target.
-CMakeFiles/stack.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=1,2,3,4 "Built target stack"
-.PHONY : CMakeFiles/stack.dir/all
+CMakeFiles/lp.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target lp"
+.PHONY : CMakeFiles/lp.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/stack.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/stack.dir/all
+CMakeFiles/lp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles 0
-.PHONY : CMakeFiles/stack.dir/rule
+.PHONY : CMakeFiles/lp.dir/rule
 
 # Convenience name for target.
-stack: CMakeFiles/stack.dir/rule
-.PHONY : stack
+lp: CMakeFiles/lp.dir/rule
+.PHONY : lp
 
 # clean rule for target.
-CMakeFiles/stack.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stack.dir/build.make CMakeFiles/stack.dir/clean
-.PHONY : CMakeFiles/stack.dir/clean
+CMakeFiles/lp.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/clean
+.PHONY : CMakeFiles/lp.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
