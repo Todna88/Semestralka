@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+error_type error = 1;
+
 int main(int argc, char *argv[]){
     FILE *file;
     int i;
@@ -15,20 +17,23 @@ int main(int argc, char *argv[]){
 
     if (argc < 2){
         puts("Input file not found!\n");
-        return EXIT_FAILURE;
+        error = 1;
+        return error;
     }
     
     if (argc > 6){
         puts("Too many arguments!\n");
-        return EXIT_FAILURE;
+        error = 6;
+        return error;
     }
     
     for (i = 1; i < argc; ++i){
         if (is_flag(argv[i])){
 
             if ((i) == (argc - 1)){
-                puts("Usage: lp.exe <input-file> -o <path> --output <path>\n");
-                return EXIT_FAILURE;
+                puts("Usage: lp.exe <input-file> -o <output-file-path> --output <output-file-path>\n");
+                error = FLAG_ERR;
+                return error;
             }
             
             output_file = argv[i+1];
@@ -45,10 +50,14 @@ int main(int argc, char *argv[]){
 
     if (!file){
         puts("Input file not found!\n");
-        return EXIT_FAILURE;
+        error = 1;
+        return error;
     }
 
-    process_file(file);
+    if(process_file(file) == 0){
+        return error;
+    }
+
     fclose(file);
     return EXIT_SUCCESS;
     

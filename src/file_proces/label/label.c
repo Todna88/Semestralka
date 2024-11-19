@@ -14,7 +14,8 @@ const size_t LABELS_COUNT = sizeof(LABELS) / sizeof(*LABELS);
 label_type identify_label(const char *line){
     size_t i;
     if(!line){
-        return 0;
+        error = POINTER_ERR;
+        return 7;
     }
 
     for (i = 0; i < LABELS_COUNT; ++i) {
@@ -27,10 +28,15 @@ label_type identify_label(const char *line){
 }
 
 int delete_comments(char *line){
-    char *comm_position;
+    char *comm_position = NULL;
 
     if (!line){
+        error = POINTER_ERR;
         return 0;
+    }
+
+    if(!strncmp(line, "\n", 2) || !strncmp(line, "\r\n", 4) || *line == 0 || *line == EOF){
+        return 2;
     }
     
     comm_position = strstr(line, "\\");

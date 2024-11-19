@@ -1,74 +1,66 @@
 #include "generals.h"
 
-struct generals *process_generals(FILE *stream){
-    label_type label;
-    struct generals *generals;
-    char line[LINE_LENGTH];
-        while (fgets(line, sizeof(line), stream)) {
-            CHECHK_LINE_LENGTH(line);
+struct generals *process_generals(char **generals, const size_t line_count){
+    struct generals *processed_generals = NULL;
+    size_t i;
 
-            DELETE_COMMS(line);
+    processed_generals = generals_alloc();
 
-            label = identify_label(line);
-            if(label){
-                goto end;
-            }
-
-            generals = get_variables(line);
-        }
-
-    end:
-        fseek(stream, -strlen(line), SEEK_CUR);
-        return generals;
-}
-
-struct generals *get_variables(char *line){
-    char *variable;
-    char **variables;
-    size_t vars_count, i;
-    struct generals *generals;
-    if (!line){
-        return NULL;
-    }
-
-    vars_count = var_count(line);
-
-    if (vars_count == 0){
-        return NULL;
-    }
-
-    variables = variables_alloc(vars_count * sizeof(variable));
-    variable = line;
-    for (i = 0; i < vars_count; ++i){
-        variable[strcspn(line, "\n")] = 0;
-        variables[i] = variable_alloc(strlen(variable)+1);
-        if(!variables[i]){
+    for (i = 0; i < line_count; ++i){
+        if(get_variables(generals[i], processed_generals) == 0){
             return NULL;
         }
-        strcpy(variables[i], variable);
-        variable += strlen(variable) + 1;
     }
 
-    generals = generals_alloc(variables, vars_count);
-    if (!generals){
-        return NULL;
-    }
-    
-    return generals;
+    return processed_generals;   
 }
 
-struct generals *generals_alloc(char **variables, size_t var_count){
-    struct generals *new_generals;
-    if(!variables || var_count == 0){
-        return NULL;
+int get_variables(char *line, struct generals *generals){
+    char *variable = NULL;
+    size_t var_count, var_len;
+    if (!line || !generals){
+        error = POINTER_ERR;
+        return 0;
     }
+
+    var_len = 0;
+    var_count = 0;
+
+    variable = strtok(line, GENERALS_SPLITTER);
+    while (variable != NULL){
+        variable[strcspn(line, "\n")] = 0;
+        ++var_count;
+        var_len = strlen(variable) + 1;
+
+        if(var_len > MAX_VAR_LEN){
+            error = VAR_NAME_ERR;
+            return 0;
+        }
+
+        if(variables_alloc(generals, var_len, var_count, variable) == 0){
+            return 0;
+        }
+        variable = strtok(NULL, GENERALS_SPLITTER);
+    }
+
+    if(generals_set_variables_count(generals, var_count) == 0){
+        return 0;
+    }
+
+    return 1;
+}
+
+struct generals *generals_alloc(){
+    struct generals *new_generals = NULL;
 
     new_generals = malloc(sizeof(*new_generals));
+
     if (!new_generals){
+        error = MEMORY_ERR;
         return NULL;
     }
 
-    if(!generals_init(new_generals, variables ,var_count)){
+    if(generals_init(new_generals) == 0){
         free(new_generals);
         return NULL;
     }
@@ -76,13 +68,14 @@ struct generals *generals_alloc(char **variables, size_t var_count){
     return new_generals;
 }
 
-int generals_init(struct generals *generals, char **variables, size_t var_count){
-    if(!generals || !variables || var_count == 0){
+int generals_init(struct generals *generals){
+    if(!generals){
+        error = POINTER_ERR;
         return 0;
     }
 
-    generals->variables = variables;
-    generals->variables_count = var_count;
+    generals->variables = NULL;
+    generals->variables_count = 0;
 
     return 1;
 }
@@ -112,49 +105,68 @@ void generals_dealloc(struct generals **generals){
     return;
 }
 
-size_t var_count(char *line){
-    size_t var_count;
-    char * var;
-    if (!line){
+char *variable_alloc(const size_t var_len, const char *var){
+    char *new_var = NULL;
+    if (!var || var_len == 0){
+        error = POINTER_ERR;
+        return NULL;
+    }
+    
+    new_var = malloc(var_len);
+
+    if(!new_var){
+        error = MEMORY_ERR;
+        return NULL;
+    }
+
+    if(variable_init(new_var, var, var_len) == 0){
+        free(new_var);
+        return NULL;
+    }
+
+    return new_var;
+}
+
+int variable_init(char *new_var, const char *var, const size_t var_len){
+    if(!new_var || !var){
+        error = POINTER_ERR;
         return 0;
     }
 
-    var = strtok(line, GENERALS_SPLITTER);
-    var_count = 0;
-    while(var != NULL) {
-        ++var_count;
-        var = strtok(NULL, GENERALS_SPLITTER);
-   }
+    strncpy(new_var, var, var_len);
 
-   return var_count;
+    return 1;
 }
 
-char *variable_alloc(size_t size){
-    char *new_var;
-    if (size == 0){
-        return NULL;
+int variables_alloc(struct generals *generals, const size_t var_len, const size_t var_count, const char *variable){
+    char **new_var = NULL;
+    size_t current_var_count;
+    if (!generals || !variable || var_len == 0 || var_count == 0){
+        error = POINTER_ERR;
+        return 0;
     }
+
+    current_var_count = var_count + generals->variables_count;
     
-    new_var = malloc(size);
+    new_var = realloc(generals->variables, current_var_count * sizeof(char *));
     if(!new_var){
-        return NULL;
+        error = MEMORY_ERR;
+        return 0;
     }
 
-    return new_var;
-}
+    new_var[current_var_count - 1] = variable_alloc(var_len, variable);
 
-char **variables_alloc(size_t size){
-    char **new_var;
-    if (size == 0){
-        return NULL;
-    }
-    
-    new_var = malloc(size);
-    if(!new_var){
-        return NULL;
+    if (!(new_var[current_var_count - 1])){
+        free(new_var);
+        error = MEMORY_ERR;
+        return 0;
     }
 
-    return new_var;
+    if(generals_set_variables(generals, new_var) == 0){
+        return 0;
+    }
+
+    return 1;
 }
 
 void variable_dealloc(char **variable){
@@ -168,14 +180,14 @@ void variable_dealloc(char **variable){
     
 }
 
-void variables_dealloc(char ***variables, size_t var_size){
+void variables_dealloc(char ***variables, const size_t var_count){
     size_t i;
-    if (!variables || !(*variables) || !(**variables) || var_size == 0){
+    if (!variables || !(*variables) || !(**variables) || var_count == 0){
         return;
     }
 
-    for (i = 0; i < var_size; ++i){
-        variable_dealloc(&(*(*variables + i)));
+    for (i = 0; i < var_count; ++i){
+        variable_dealloc(&((*variables)[i]));
     }
     
     free(*variables);
@@ -183,7 +195,7 @@ void variables_dealloc(char ***variables, size_t var_size){
     return;
 }
 
-void print_generals(struct generals *generals){
+void print_generals(const struct generals *generals){
     size_t i;
     if(!generals){
         return;
@@ -194,4 +206,26 @@ void print_generals(struct generals *generals){
     }
 
     return;
+}
+
+int generals_set_variables(struct generals *generals, char **variables){
+    if(!generals || !variables){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    generals->variables = variables;
+
+    return 1;
+}
+
+int generals_set_variables_count(struct generals *generals, const size_t var_count){
+    if(!generals || var_count == 0){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    generals->variables_count += var_count;
+
+    return 1;
 }

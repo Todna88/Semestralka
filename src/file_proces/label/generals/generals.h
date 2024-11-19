@@ -1,36 +1,40 @@
 #include "../label.h"
 
-#include <stdio.h>
-
 #ifndef GENERALS_H
 #define GENERALS_H
+
+#define MAX_VAR_LEN 256
 
 struct generals{
     char **variables;
     size_t variables_count;
 };
 
-struct generals *process_generals(FILE *stream);
+struct generals *process_generals(char **generals, size_t line_count);
 
-struct generals *get_variables(char *line);
+int get_variables(char *line, struct generals *generals);
 
-struct generals *generals_alloc(char **variables, size_t var_count);
+struct generals *generals_alloc();
 
-int generals_init(struct generals *generals, char **variables, size_t var_count);
+int generals_init(struct generals *generals);
 
 void generals_dealloc(struct generals **generals);
 
 void generals_deinit(struct generals *generals);
 
-char *variable_alloc(size_t size);
+char *variable_alloc(const size_t var_len, const char *var);
 
-char **variables_alloc(size_t size);
+int variable_init(char *new_var, const char *var, const size_t var_len);
+
+int variables_alloc(struct generals *generals, const size_t var_len, const size_t var_count, const char *variable);
 
 void variable_dealloc(char **variable);
 
-void variables_dealloc(char ***variables, size_t var_size);
+void variables_dealloc(char ***variables, const size_t var_count);
 
-size_t var_count(char *line);
+void print_generals(const struct generals *generals);
 
-void print_generals(struct generals *generals);
+int generals_set_variables(struct generals *generals, char **variables);
+
+int generals_set_variables_count(struct generals *generals, const size_t var_count);
 #endif

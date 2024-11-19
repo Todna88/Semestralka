@@ -5,6 +5,8 @@
         "stdio.h": "c",
         "file_proces.h": "c",
         "flags.h": "c",
-        "string.h": "c"
-    }
+        "string.h": "c",
+        "generals.h": "c"
+    },
+    "C_Cpp.dimInactiveRegions": true
 }

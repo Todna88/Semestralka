@@ -4,6 +4,7 @@ CMakeFiles/lp.dir/src/lp.c.o: \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/file_proces.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/../label.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/../../../errors.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

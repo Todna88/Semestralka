@@ -1,4 +1,10 @@
 # ninja log v6
 19	259	7522886655645165	CMakeFiles/stack.dir/src/stack_check.c.obj	ff3865fd5d6457d0
 36	291	7522886655810116	CMakeFiles/stack.dir/src/stack/stack.c.obj	dfe79bf43658be8b
+489	703	7530327565735458	lp.exe	bd5f815945121480
 53	266	7522886655925619	CMakeFiles/stack.dir/src/node/node.c.obj	15845108a8581c19
+109	399	7530327561936217	CMakeFiles/lp.dir/src/file_proces/label/label.c.obj	7843c0b87c14be60
+97	440	7530327561802338	CMakeFiles/lp.dir/src/flags/flags.c.obj	5ddef105ba4ad4da
+75	434	7530327561600669	CMakeFiles/lp.dir/src/lp.c.obj	1317b6fbe97fbffa
+87	457	7530327561720843	CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj	f560b754993393f2
+120	489	7530327562046653	CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj	6aac7935e750e516
