@@ -5,6 +5,9 @@ struct generals *process_generals(char **generals, const size_t line_count){
     size_t i;
 
     processed_generals = generals_alloc();
+    if(!processed_generals){
+        return NULL;
+    }
 
     for (i = 0; i < line_count; ++i){
         if(get_variables(generals[i], processed_generals) == 0){
@@ -86,10 +89,12 @@ void generals_deinit(struct generals *generals){
     }
 
     if (!generals->variables){
-        return;
+        goto end;
     }
 
     variables_dealloc(&(generals->variables), generals->variables_count);
+
+    end:
     generals->variables_count = 0;
     return;
 }
