@@ -9,10 +9,10 @@ error_type error = 1;
 int main(int argc, char *argv[]){
     FILE *file;
     int i;
-    char *output_file;
+    /*char *output_file;*/
     char *input_file;
 
-    output_file = NULL;
+    /*output_file = NULL;*/
     input_file = NULL;
 
     if (argc < 2){
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
                 return error;
             }
             
-            output_file = argv[i+1];
+            /*output_file = argv[i+1];*/
             i += 1;
             continue;
         }

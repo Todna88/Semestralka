@@ -1,4 +1,5 @@
 #include "label/generals/generals.h"
+#include "label/function/function.h"
 
 #ifndef FILE_PROCES_H
 #define FILE_PROCES_H
@@ -37,7 +38,7 @@ int divided_file_init(struct divided_file *divided_file);
 
 int subject_to_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char * line);
 
-int function_alloc(struct divided_file *file, const size_t line_len, char *function_type, const char *line);
+int func_alloc(struct divided_file *file, const size_t line_len, char *function_type, const char *line);
 
 int bounds_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line);
 

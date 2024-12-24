@@ -10,6 +10,8 @@ struct generals{
     size_t variables_count;
 };
 
+int get_variable(const char * var_1, const struct generals *generals);
+
 struct generals *process_generals(char **generals, size_t line_count);
 
 int get_variables(char *line, struct generals *generals);

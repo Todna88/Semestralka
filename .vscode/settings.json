@@ -6,7 +6,9 @@
         "file_proces.h": "c",
         "flags.h": "c",
         "string.h": "c",
-        "generals.h": "c"
+        "generals.h": "c",
+        "function.h": "c",
+        "ctype.h": "c"
     },
     "C_Cpp.dimInactiveRegions": true
 }

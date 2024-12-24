@@ -9,8 +9,9 @@ add_executable(lp
     src/flags/flags.c
     src/file_proces/label/label.c
     src/file_proces/label/generals/generals.c
-    #src/stack/stack_check.c
-    # Podadresář s implementací zásobníku.
-    #src/stack/stack.c
-    #src/node/node.c
+    src/stack/stack.c
+    src/node/node.c
+    src/queue/queue.c
+    src/file_proces/label/function/function.c
+    src/file_proces/label/function/operators.c
 )

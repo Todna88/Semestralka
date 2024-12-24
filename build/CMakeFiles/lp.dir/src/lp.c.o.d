@@ -28,4 +28,15 @@ CMakeFiles/lp.dir/src/lp.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../label.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../errors.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/generals.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/../label.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/../../../errors.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../stack/stack.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../queue/queue.h \
+ /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/flags/flags.h

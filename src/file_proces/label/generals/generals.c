@@ -234,3 +234,20 @@ int generals_set_variables_count(struct generals *generals, const size_t var_cou
 
     return 1;
 }
+
+int get_variable(const char * var, const struct generals *generals){
+    size_t i;
+
+    for (i = 0; i < generals->variables_count; ++i){
+        if (strlen(var) != strlen(generals->variables[i])){
+            continue;
+        }
+        
+        if(!strcmp(var, generals->variables[i])){
+            return i;
+        }
+    }
+
+    return -1;
+    
+}

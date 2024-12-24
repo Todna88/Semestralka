@@ -1,10 +1,10 @@
-CMakeFiles/lp.dir/src/file_proces/file_proces.c.o: \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/file_proces.c \
+CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c \
  /usr/include/stdc-predef.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/file_proces.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/../label.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/../../../errors.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../label.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../errors.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -28,10 +28,6 @@ CMakeFiles/lp.dir/src/file_proces/file_proces.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../label.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../errors.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/generals.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/../label.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/../../../errors.h \

@@ -139,13 +139,88 @@ CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.s"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.c -o CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.s
 
+CMakeFiles/lp.dir/src/stack/stack.c.o: CMakeFiles/lp.dir/flags.make
+CMakeFiles/lp.dir/src/stack/stack.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c
+CMakeFiles/lp.dir/src/stack/stack.c.o: CMakeFiles/lp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/lp.dir/src/stack/stack.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lp.dir/src/stack/stack.c.o -MF CMakeFiles/lp.dir/src/stack/stack.c.o.d -o CMakeFiles/lp.dir/src/stack/stack.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c
+
+CMakeFiles/lp.dir/src/stack/stack.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lp.dir/src/stack/stack.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c > CMakeFiles/lp.dir/src/stack/stack.c.i
+
+CMakeFiles/lp.dir/src/stack/stack.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lp.dir/src/stack/stack.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c -o CMakeFiles/lp.dir/src/stack/stack.c.s
+
+CMakeFiles/lp.dir/src/node/node.c.o: CMakeFiles/lp.dir/flags.make
+CMakeFiles/lp.dir/src/node/node.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c
+CMakeFiles/lp.dir/src/node/node.c.o: CMakeFiles/lp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/lp.dir/src/node/node.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lp.dir/src/node/node.c.o -MF CMakeFiles/lp.dir/src/node/node.c.o.d -o CMakeFiles/lp.dir/src/node/node.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c
+
+CMakeFiles/lp.dir/src/node/node.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lp.dir/src/node/node.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c > CMakeFiles/lp.dir/src/node/node.c.i
+
+CMakeFiles/lp.dir/src/node/node.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lp.dir/src/node/node.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c -o CMakeFiles/lp.dir/src/node/node.c.s
+
+CMakeFiles/lp.dir/src/queue/queue.c.o: CMakeFiles/lp.dir/flags.make
+CMakeFiles/lp.dir/src/queue/queue.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.c
+CMakeFiles/lp.dir/src/queue/queue.c.o: CMakeFiles/lp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/lp.dir/src/queue/queue.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lp.dir/src/queue/queue.c.o -MF CMakeFiles/lp.dir/src/queue/queue.c.o.d -o CMakeFiles/lp.dir/src/queue/queue.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.c
+
+CMakeFiles/lp.dir/src/queue/queue.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lp.dir/src/queue/queue.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.c > CMakeFiles/lp.dir/src/queue/queue.c.i
+
+CMakeFiles/lp.dir/src/queue/queue.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lp.dir/src/queue/queue.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.c -o CMakeFiles/lp.dir/src/queue/queue.c.s
+
+CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: CMakeFiles/lp.dir/flags.make
+CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c
+CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: CMakeFiles/lp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o -MF CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o.d -o CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c
+
+CMakeFiles/lp.dir/src/file_proces/label/function/function.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lp.dir/src/file_proces/label/function/function.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c > CMakeFiles/lp.dir/src/file_proces/label/function/function.c.i
+
+CMakeFiles/lp.dir/src/file_proces/label/function/function.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lp.dir/src/file_proces/label/function/function.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c -o CMakeFiles/lp.dir/src/file_proces/label/function/function.c.s
+
+CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o: CMakeFiles/lp.dir/flags.make
+CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.c
+CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o: CMakeFiles/lp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o -MF CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o.d -o CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o -c /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.c
+
+CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.c > CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.i
+
+CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.c -o CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.s
+
 # Object files for target lp
 lp_OBJECTS = \
 "CMakeFiles/lp.dir/src/lp.c.o" \
 "CMakeFiles/lp.dir/src/file_proces/file_proces.c.o" \
 "CMakeFiles/lp.dir/src/flags/flags.c.o" \
 "CMakeFiles/lp.dir/src/file_proces/label/label.c.o" \
-"CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.o"
+"CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.o" \
+"CMakeFiles/lp.dir/src/stack/stack.c.o" \
+"CMakeFiles/lp.dir/src/node/node.c.o" \
+"CMakeFiles/lp.dir/src/queue/queue.c.o" \
+"CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o" \
+"CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o"
 
 # External object files for target lp
 lp_EXTERNAL_OBJECTS =
@@ -155,9 +230,14 @@ lp: CMakeFiles/lp.dir/src/file_proces/file_proces.c.o
 lp: CMakeFiles/lp.dir/src/flags/flags.c.o
 lp: CMakeFiles/lp.dir/src/file_proces/label/label.c.o
 lp: CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.o
+lp: CMakeFiles/lp.dir/src/stack/stack.c.o
+lp: CMakeFiles/lp.dir/src/node/node.c.o
+lp: CMakeFiles/lp.dir/src/queue/queue.c.o
+lp: CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o
+lp: CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o
 lp: CMakeFiles/lp.dir/build.make
 lp: CMakeFiles/lp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable lp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable lp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -20,7 +20,7 @@ struct queue{
     size_t data_size;
 };
 
-#define DEFAULT_STACK {NULL, NULL, 0, 0}
+#define DEFAULT_QUEUE {NULL, NULL, 0, 0}
 
 /**
  * \brief Funkce dynamicky alokuje instanci struktury `queue`, kterou inicializuje pomocí funkce `queue_init`.

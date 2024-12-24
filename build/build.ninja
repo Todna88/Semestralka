@@ -89,6 +89,46 @@ build CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj: C_COMPILE
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
   TARGET_PDB = lp.pdb
 
+build CMakeFiles/lp.dir/src/stack/stack.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\stack\stack.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\stack
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
+build CMakeFiles/lp.dir/src/node/node.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\node\node.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\node
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
+build CMakeFiles/lp.dir/src/queue/queue.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\queue\queue.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\queue
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
+build CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\function\function.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\function
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
+build CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\function\operators.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\function
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lp
@@ -97,7 +137,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj: C_COMPILE
 #############################################
 # Link the executable lp.exe
 
-build lp.exe: C_EXECUTABLE_LINKER__lp_Debug CMakeFiles/lp.dir/src/lp.c.obj CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj CMakeFiles/lp.dir/src/flags/flags.c.obj CMakeFiles/lp.dir/src/file_proces/label/label.c.obj CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj
+build lp.exe: C_EXECUTABLE_LINKER__lp_Debug CMakeFiles/lp.dir/src/lp.c.obj CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj CMakeFiles/lp.dir/src/flags/flags.c.obj CMakeFiles/lp.dir/src/file_proces/label/label.c.obj CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj CMakeFiles/lp.dir/src/stack/stack.c.obj CMakeFiles/lp.dir/src/node/node.c.obj CMakeFiles/lp.dir/src/queue/queue.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj
   FLAGS = -Wall -Wextra -pedantic -ansi -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lp.dir

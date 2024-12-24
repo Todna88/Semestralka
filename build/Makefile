@@ -153,6 +153,54 @@ src/file_proces/file_proces.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/file_proces.c.s
 .PHONY : src/file_proces/file_proces.c.s
 
+src/file_proces/label/function/function.o: src/file_proces/label/function/function.c.o
+.PHONY : src/file_proces/label/function/function.o
+
+# target to build an object file
+src/file_proces/label/function/function.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o
+.PHONY : src/file_proces/label/function/function.c.o
+
+src/file_proces/label/function/function.i: src/file_proces/label/function/function.c.i
+.PHONY : src/file_proces/label/function/function.i
+
+# target to preprocess a source file
+src/file_proces/label/function/function.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/function/function.c.i
+.PHONY : src/file_proces/label/function/function.c.i
+
+src/file_proces/label/function/function.s: src/file_proces/label/function/function.c.s
+.PHONY : src/file_proces/label/function/function.s
+
+# target to generate assembly for a file
+src/file_proces/label/function/function.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/function/function.c.s
+.PHONY : src/file_proces/label/function/function.c.s
+
+src/file_proces/label/function/operators.o: src/file_proces/label/function/operators.c.o
+.PHONY : src/file_proces/label/function/operators.o
+
+# target to build an object file
+src/file_proces/label/function/operators.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.o
+.PHONY : src/file_proces/label/function/operators.c.o
+
+src/file_proces/label/function/operators.i: src/file_proces/label/function/operators.c.i
+.PHONY : src/file_proces/label/function/operators.i
+
+# target to preprocess a source file
+src/file_proces/label/function/operators.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.i
+.PHONY : src/file_proces/label/function/operators.c.i
+
+src/file_proces/label/function/operators.s: src/file_proces/label/function/operators.c.s
+.PHONY : src/file_proces/label/function/operators.s
+
+# target to generate assembly for a file
+src/file_proces/label/function/operators.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.s
+.PHONY : src/file_proces/label/function/operators.c.s
+
 src/file_proces/label/generals/generals.o: src/file_proces/label/generals/generals.c.o
 .PHONY : src/file_proces/label/generals/generals.o
 
@@ -249,6 +297,78 @@ src/lp.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/lp.c.s
 .PHONY : src/lp.c.s
 
+src/node/node.o: src/node/node.c.o
+.PHONY : src/node/node.o
+
+# target to build an object file
+src/node/node.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/node/node.c.o
+.PHONY : src/node/node.c.o
+
+src/node/node.i: src/node/node.c.i
+.PHONY : src/node/node.i
+
+# target to preprocess a source file
+src/node/node.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/node/node.c.i
+.PHONY : src/node/node.c.i
+
+src/node/node.s: src/node/node.c.s
+.PHONY : src/node/node.s
+
+# target to generate assembly for a file
+src/node/node.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/node/node.c.s
+.PHONY : src/node/node.c.s
+
+src/queue/queue.o: src/queue/queue.c.o
+.PHONY : src/queue/queue.o
+
+# target to build an object file
+src/queue/queue.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/queue/queue.c.o
+.PHONY : src/queue/queue.c.o
+
+src/queue/queue.i: src/queue/queue.c.i
+.PHONY : src/queue/queue.i
+
+# target to preprocess a source file
+src/queue/queue.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/queue/queue.c.i
+.PHONY : src/queue/queue.c.i
+
+src/queue/queue.s: src/queue/queue.c.s
+.PHONY : src/queue/queue.s
+
+# target to generate assembly for a file
+src/queue/queue.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/queue/queue.c.s
+.PHONY : src/queue/queue.c.s
+
+src/stack/stack.o: src/stack/stack.c.o
+.PHONY : src/stack/stack.o
+
+# target to build an object file
+src/stack/stack.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/stack/stack.c.o
+.PHONY : src/stack/stack.c.o
+
+src/stack/stack.i: src/stack/stack.c.i
+.PHONY : src/stack/stack.i
+
+# target to preprocess a source file
+src/stack/stack.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/stack/stack.c.i
+.PHONY : src/stack/stack.c.i
+
+src/stack/stack.s: src/stack/stack.c.s
+.PHONY : src/stack/stack.s
+
+# target to generate assembly for a file
+src/stack/stack.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/stack/stack.c.s
+.PHONY : src/stack/stack.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -261,6 +381,12 @@ help:
 	@echo "... src/file_proces/file_proces.o"
 	@echo "... src/file_proces/file_proces.i"
 	@echo "... src/file_proces/file_proces.s"
+	@echo "... src/file_proces/label/function/function.o"
+	@echo "... src/file_proces/label/function/function.i"
+	@echo "... src/file_proces/label/function/function.s"
+	@echo "... src/file_proces/label/function/operators.o"
+	@echo "... src/file_proces/label/function/operators.i"
+	@echo "... src/file_proces/label/function/operators.s"
 	@echo "... src/file_proces/label/generals/generals.o"
 	@echo "... src/file_proces/label/generals/generals.i"
 	@echo "... src/file_proces/label/generals/generals.s"
@@ -273,6 +399,15 @@ help:
 	@echo "... src/lp.o"
 	@echo "... src/lp.i"
 	@echo "... src/lp.s"
+	@echo "... src/node/node.o"
+	@echo "... src/node/node.i"
+	@echo "... src/node/node.s"
+	@echo "... src/queue/queue.o"
+	@echo "... src/queue/queue.i"
+	@echo "... src/queue/queue.s"
+	@echo "... src/stack/stack.o"
+	@echo "... src/stack/stack.i"
+	@echo "... src/stack/stack.s"
 .PHONY : help
 
 

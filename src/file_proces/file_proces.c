@@ -3,6 +3,7 @@
 int process_file(FILE *file){
     struct divided_file *divided_file = NULL;
     struct generals *generals = NULL;
+    struct function *function = NULL;
     divided_file = divide_file(file);
 
     if (!divided_file){
@@ -15,8 +16,15 @@ int process_file(FILE *file){
         return 0;
     }
 
+    function = process_function(divided_file->function, generals);
+
+    if(!function){
+        return 0;
+    }
+
     print_generals(generals);
     generals_dealloc(&generals);
+    function_dealloc(&function);
 
     divided_file_dealloc(&divided_file);
 
@@ -84,7 +92,7 @@ struct divided_file *divide_file(FILE *file){
                 return NULL;
             }
 
-            if(function_alloc(divided_file, label_line_len, MAX_TYPE, line) == 0){
+            if(func_alloc(divided_file, label_line_len, MAX_TYPE, line) == 0){
                 return NULL;
             }
             continue;
@@ -98,7 +106,7 @@ struct divided_file *divide_file(FILE *file){
                 return NULL;
             }
 
-            if(function_alloc(divided_file, label_line_len, MIN_TYPE, line) == 0){
+            if(func_alloc(divided_file, label_line_len, MIN_TYPE, line) == 0){
                 return NULL;
             }
             continue;
@@ -196,7 +204,7 @@ int subject_to_alloc(struct divided_file *file, const size_t line_len, const siz
     return 1;
 }
 
-int function_alloc(struct divided_file *file, const size_t line_len, char *function_type, const char *line){
+int func_alloc(struct divided_file *file, const size_t line_len, char *function_type, const char *line){
     char *new_line = NULL;
     if (!file || !function_type || !line || line_len == 0){
         error = POINTER_ERR;
