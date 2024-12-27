@@ -1,4 +1,5 @@
 #include "node.h"
+#include "../errors.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -10,6 +11,7 @@ struct node *node_alloc(const size_t data_size){
     new_node = malloc(sizeof(*new_node));
 
     if (!new_node){
+        error = MEMORY_ERR;
         return NULL;
     }
 
@@ -23,12 +25,14 @@ struct node *node_alloc(const size_t data_size){
 
 int node_init(struct node *n, const size_t data_size){
     if (!n || data_size == 0){
+        error = POINTER_ERR;
         return 0;
     }
 
     n->data = malloc(data_size);
 
     if (!n->data){
+        error = MEMORY_ERR;
         return 0;
     }
 
@@ -67,6 +71,7 @@ void node_dealloc(struct node **n){
 
 int node_add_data(struct node *n, const void *data){
     if(!n || !data){
+        error = POINTER_ERR;
         return 0;
     }
 
@@ -78,6 +83,7 @@ int node_add_data(struct node *n, const void *data){
 struct node *create_node(const size_t data_size, const void *data){
     struct node *new_node;
     if (data_size == 0 || (!data)){
+        error = POINTER_ERR;
         return NULL;
     }
 
@@ -91,6 +97,5 @@ struct node *create_node(const size_t data_size, const void *data){
         return NULL;
     }
 
-    return new_node;
-    
+    return new_node;  
 }

@@ -3,7 +3,7 @@ Subject To \ poradi neni fixni
 vyroba: x_1 + 2x_2 <= 8
 baleni: 2 *x_1 + 1 * x_2 <= 6
 Maximize
-5*(-2x_1 + 3*x_2) \ ucelova funkce
+-5.8[x_1+{7.87*(1.1x_3 - 8.458*(x_2))}] + x_5 = z\ ucelova funkce
 
 Generals
 x_2 x_1 x_3

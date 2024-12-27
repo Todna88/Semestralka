@@ -42,7 +42,6 @@ CMakeFiles/lp.dir/src/file_proces/file_proces.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Se
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h
@@ -84,7 +83,6 @@ CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: /mnt/d/Škola/FAV
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h
@@ -259,7 +257,6 @@ CMakeFiles/lp.dir/src/lp.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/lp.c \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
@@ -269,6 +266,7 @@ CMakeFiles/lp.dir/src/node/node.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/
   /usr/include/stdc-predef.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h \
@@ -332,6 +330,7 @@ CMakeFiles/lp.dir/src/stack/stack.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/sr
   /usr/include/stdc-predef.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
@@ -363,6 +362,8 @@ CMakeFiles/lp.dir/src/stack/stack.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/sr
 
 /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c:
 
+/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.h:
+
 /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c:
 
 /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/lp.c:
@@ -376,8 +377,6 @@ CMakeFiles/lp.dir/src/stack/stack.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/sr
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/ctype.h:
-
-/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.h:
 
 /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h:
 

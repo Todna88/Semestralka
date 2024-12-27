@@ -39,4 +39,7 @@ void print_generals(const struct generals *generals);
 int generals_set_variables(struct generals *generals, char **variables);
 
 int generals_set_variables_count(struct generals *generals, const size_t var_count);
+
+int search_variables(char *line, const struct generals *generals);
+
 #endif

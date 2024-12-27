@@ -2,7 +2,9 @@ CMakeFiles/lp.dir/src/node/node.c.o: \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c \
  /usr/include/stdc-predef.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/stdlib.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/../errors.h \
+ /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \

@@ -6,16 +6,20 @@ struct generals *process_generals(char **generals, const size_t line_count){
 
     processed_generals = generals_alloc();
     if(!processed_generals){
-        return NULL;
+        goto err;
     }
 
     for (i = 0; i < line_count; ++i){
         if(get_variables(generals[i], processed_generals) == 0){
-            return NULL;
+            generals_dealloc(&processed_generals);
+            goto err;
         }
     }
 
-    return processed_generals;   
+    return processed_generals;
+
+    err:
+    return NULL;
 }
 
 int get_variables(char *line, struct generals *generals){
@@ -235,7 +239,7 @@ int generals_set_variables_count(struct generals *generals, const size_t var_cou
     return 1;
 }
 
-int get_variable(const char * var, const struct generals *generals){
+int get_variable(const char *var, const struct generals *generals){
     size_t i;
 
     for (i = 0; i < generals->variables_count; ++i){
@@ -249,5 +253,22 @@ int get_variable(const char * var, const struct generals *generals){
     }
 
     return -1;
+}
+
+int search_variables(char *line, const struct generals *generals){
+    size_t i;
+
+    if (!line || !generals){
+        error = POINTER_ERR;
+        return -1;
+    }
     
+
+    for (i = 0; i < generals->variables_count; ++i){
+        if (strstr(line, generals->variables[i])){
+            return 1;
+        }
+    }
+
+    return 0;
 }

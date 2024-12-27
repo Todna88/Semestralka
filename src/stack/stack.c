@@ -1,4 +1,5 @@
 #include "stack.h"
+#include "../errors.h"
 #include "../node/node.h"
 
 #include <stdlib.h>
@@ -11,6 +12,7 @@ struct stack *stack_alloc(const size_t data_size){
     new_stack = malloc(sizeof(*new_stack));
 
     if (!new_stack){
+        error = MEMORY_ERR;
         return NULL;
     }
     
@@ -24,6 +26,7 @@ struct stack *stack_alloc(const size_t data_size){
 
 int stack_init(struct stack *s, const size_t data_size){
     if(!s || data_size == 0){
+        error = POINTER_ERR;
         return 0;
     }
 
@@ -79,6 +82,7 @@ int check_empty(const struct stack *s){
 int stack_push(struct stack *s, const void *data){
     struct node *new_node;
     if(!s || !data){
+        error = POINTER_ERR;
         return 0;
     }
 
@@ -105,11 +109,11 @@ int stack_pop(struct stack *s, void *data){
     s->top = tmp;
     s->item_count--;
     return 1;
-    
 }
 
 int stack_head(const struct stack *s, void *data){
     if (!s || !data || s->item_count == 0){
+        error = POINTER_ERR;
         return 0;
     }
 

@@ -7,28 +7,35 @@ int process_file(FILE *file){
     divided_file = divide_file(file);
 
     if (!divided_file){
-        return 0;
+        goto err;
     }
 
     generals = process_generals(divided_file->generals, divided_file->generals_line_count);
 
     if(!generals){
-        return 0;
+        goto err;
     }
 
     function = process_function(divided_file->function, generals);
 
     if(!function){
-        return 0;
+        goto err;
     }
 
     print_generals(generals);
+    print_coefs(function, generals);
+
     generals_dealloc(&generals);
     function_dealloc(&function);
-
     divided_file_dealloc(&divided_file);
 
     return 1;
+
+    err:
+        generals_dealloc(&generals);
+        function_dealloc(&function);
+        divided_file_dealloc(&divided_file);
+        return 0;
 }
 
 struct divided_file *divide_file(FILE *file){
@@ -63,7 +70,7 @@ struct divided_file *divide_file(FILE *file){
             break;
 
         case 7:
-            return NULL;
+            goto err;
             break;
         
         default:
@@ -79,7 +86,7 @@ struct divided_file *divide_file(FILE *file){
         case 1:
             ++line_count;
             if(subject_to_alloc(divided_file, label_line_len, line_count, line) == 0){
-                return NULL;
+                goto err;
             }
             continue;
             break;
@@ -89,11 +96,11 @@ struct divided_file *divide_file(FILE *file){
 
             if(line_count > 1){
                 error = SYNTAX_ERR;
-                return NULL;
+                goto err;
             }
 
             if(func_alloc(divided_file, label_line_len, MAX_TYPE, line) == 0){
-                return NULL;
+                goto err;
             }
             continue;
             break;
@@ -103,11 +110,11 @@ struct divided_file *divide_file(FILE *file){
 
             if(line_count > 1){
                 error = SYNTAX_ERR;
-                return NULL;
+                goto err;
             }
 
             if(func_alloc(divided_file, label_line_len, MIN_TYPE, line) == 0){
-                return NULL;
+                goto err;
             }
             continue;
             break;
@@ -115,7 +122,7 @@ struct divided_file *divide_file(FILE *file){
         case 4:
             ++line_count;
             if(bounds_alloc(divided_file, label_line_len, line_count, line) == 0){
-                return NULL;
+                goto err;
             }
             continue;
             break;
@@ -123,7 +130,7 @@ struct divided_file *divide_file(FILE *file){
         case 5:
             ++line_count;
             if(gen_alloc(divided_file, label_line_len, line_count, line) == 0){
-                return NULL;
+                goto err;
             }
             continue;
             break;
@@ -135,6 +142,8 @@ struct divided_file *divide_file(FILE *file){
     }
 
     error = SYNTAX_ERR;
+    err:
+    divided_file_dealloc(&divided_file);
     return NULL;
 
     end:

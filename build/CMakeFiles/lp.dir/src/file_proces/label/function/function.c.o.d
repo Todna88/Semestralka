@@ -32,6 +32,5 @@ CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/../label.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../generals/../../../errors.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../stack/stack.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/../../../queue/queue.h \
  /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endianness.h

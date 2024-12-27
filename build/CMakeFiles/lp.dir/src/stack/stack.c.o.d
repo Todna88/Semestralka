@@ -3,6 +3,7 @@ CMakeFiles/lp.dir/src/stack/stack.c.o: \
  /usr/include/stdc-predef.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/../errors.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/../node/node.h \
  /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \

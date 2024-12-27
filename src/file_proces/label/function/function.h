@@ -1,7 +1,6 @@
 #include "operators.h"
 #include "../generals/generals.h"
 #include "../../../stack/stack.h"
-#include "../../../queue/queue.h"
 #include <ctype.h>
 
 #ifndef FUNCTION_H
@@ -13,28 +12,27 @@ struct function{
     double *coefs;
 };
 
-struct queue_record{
+struct output_record{
     double *coef_values;
     size_t arr_len;
     double value;
-    operation operator;
 };
 
-int parse_variable(struct queue *queue, struct stack *stack, const char *function, const struct generals *generals, int *sign);
+int parse_variable(struct stack *output_stack, struct stack *input_stack, const char *function, const struct generals *generals);
 
-int parse_operator(struct queue *queue, struct stack *stack, const char current_char, int *sign);
+int parse_operator(struct stack *output_stack, struct stack *input_stack, const char current_char);
 
-int parse_brackets(struct queue *queue, struct stack *stack, const char current_char);
+int parse_brackets(struct stack *output_stack, struct stack *input_stack, const char current_char);
 
-int parse_number(struct stack *stack, struct queue *queue, const char *function, int *sign);
+int parse_number(struct stack *input_stack, struct stack *output_stack, const char *function);
 
 int check_variable(const char next_char);
 
-int check_unary_operator(const char operator, int *sign);
+int check_unary_operator(const char operator, struct stack *output_stack, struct stack *input_stack);
 
-int evaluate(struct queue_record *operand_1, struct queue_record *operand_2, struct queue *queue, operation operator);
+int evaluate(struct output_record *operand_1, struct output_record *operand_2, struct stack *output_stack, operation operator);
 
-int queue_record_init(struct queue_record *queue_record, double *coef_values, size_t arr_len, double value, operation operator);
+int output_record_init(struct output_record *output_record, double *coef_values, size_t arr_len, double value);
 
 struct function *process_function(char *function, const struct generals *generals);
 
@@ -48,10 +46,24 @@ void function_dealloc(struct function **function);
 
 void function_deinit(struct function *function);
 
+void record_arrays_dealloc(struct stack *output_stack);
+
 int is_left_bracket(const char symbol);
 
 int is_right_bracket(const char symbol);
 
 int is_equal_bracket(const char left_bracket, const char right_bracket);
+
+void delete_spaces(char * line);
+
+void print_coefs(struct function *function, struct generals *generals);
+
+int check_stacks(double *coef_array, struct stack *input_stack, struct stack *output_stack, size_t var_count);
+
+int parse_artithmetic_expression(char *expression, double *coef_array, const struct generals *generals);
+
+void dealloc_record(struct output_record *record);
+
+void check_unused_variables(const struct function *function, const struct generals *generals);
 
 #endif

@@ -2,180 +2,103 @@
 
 struct function *process_function(char *function, const struct generals *generals){
     struct function *processed_function = NULL;
-    struct queue *queue = NULL;
-    struct stack *stack = NULL;
-    char current_char, stack_out;
-    int i, parse_number_result, parse_var_result, sign;
-    struct queue_record operand_1, operand_2, result;
-    operation operator = NULL;
+    char splitter[2] = "=";
+    char *token;
+    size_t i;
+
+    if(!function || !generals){
+        error = POINTER_ERR;
+        goto err;
+    }
 
     if (!control_function(function)){
-        return NULL;
+        goto err;
     }
-    
 
     processed_function = function_alloc(generals->variables_count);
     if(!processed_function){
-        return NULL;
+        goto err;
     }
 
-    stack = stack_alloc(sizeof(char));
-    if(!stack){
-        error = MEMORY_ERR;
-        return NULL;
-    }
-
-    queue = queue_alloc(sizeof(struct queue_record));
-    if(!stack){
-        error = MEMORY_ERR;
-        return NULL;
-    }
-
-    sign = 1;
+    token = strtok(function, splitter);
     i = 0;
 
-    while(function[i] != '\0'){
-
-        current_char = function[i];
-
-        if (isdigit(current_char)){
-            parse_number_result = parse_number(stack, queue, &function[i], &sign);
-
-            if (parse_number_result == -1){
-                return NULL;
+    while(token != NULL){
+        if (search_variables(token, generals) == 1){
+            if(!parse_artithmetic_expression(function, processed_function->coefs, generals)){
+                function_dealloc(&processed_function);
+                goto err;
             }
-            i += parse_number_result;
+            token = strtok(NULL, splitter);
         }
 
-        if (isspace(current_char)){
-            ++i;
-            continue;
-        }
-
-        if (is_left_bracket(current_char)){
-            stack_push(stack, &current_char);
-
-            if (!check_unary_operator(current_char, &sign)){
-                return NULL;
-            }
-            
-            ++i;
-            continue;
-        }
-
-        if (is_right_bracket(current_char)){
-            if(!parse_brackets(queue, stack, current_char)){
-                return NULL;
-            }
-
-            ++i;
-            continue; 
-        }
-
-        if (is_operator(current_char)){
-            if(!parse_operator(queue, stack, current_char, &sign)){
-                return NULL;
-            }
-            ++i;
-            continue;
-        }
-
-        parse_var_result = parse_variable(queue, stack, &function[i], generals, &sign);
-        if (parse_var_result == -1){
-            return NULL;
-        }
-
-        i += parse_var_result;
-    }
-    
-    while (!check_empty(stack)){
-
-        if(is_empty(queue)){
+        else if(search_variables(token, generals) == -1){
             goto err;
         }
 
-        queue_dequeue(queue, &operand_2);
-
-        if(is_empty(queue)){
-            goto err;
+        else{
+            token = strtok(NULL, splitter);
         }
 
-        queue_dequeue(queue, &operand_1);
-
-        stack_pop(stack, &stack_out);
-
-        operator = get_operation(stack_out);
-
-        if(!operator){
-            goto err;
-        }
-
-        if(!evaluate(&operand_1, &operand_2, queue, operator)){
-            return 0;
-        }
+        ++i;
     }
 
-    if(is_empty(queue)){
+    if ((i == 0) || (i > 2)){
+        error = SYNTAX_ERR;
         goto err;
     }
 
-    queue_dequeue(queue, &result);
-
-    if(!is_empty(queue)){
-        goto err;
-    }
-
-    processed_function->coefs = result.coef_values;
-
-    free(result.coef_values);
-
-    queue_dealloc(&queue);
-    stack_dealloc(&stack);
+    check_unused_variables(processed_function, generals);
 
     return processed_function;
 
     err:
-        error = SYNTAX_ERR;
-        return NULL;
+    return NULL;
 }
 
 int check_multiply(const char next_char){
-    if (!is_right_bracket(next_char) && !is_operator(next_char) && !isdigit(next_char)){
+    if (!is_right_bracket(next_char) && !is_operator(next_char) && !isdigit(next_char) && !(next_char == '\0')){
         return 1;
     }
 
     return 0;  
 }
 
-int parse_variable(struct queue *queue, struct stack *stack, const char *function, const struct generals *generals, int *sign){
+int parse_variable(struct stack *output_stack, struct stack *input_stack, const char *function, const struct generals *generals){
     size_t i;
     char next_char;
     char *variable_name = NULL;
     int variable_id;
-    struct queue_record new_record;
+    struct output_record new_record;
     double *coefs = NULL;
 
-
+    if (!output_stack || !input_stack || !function || !generals){
+        error = POINTER_ERR;
+        goto err;
+    }
+    
     i = 0;
     next_char = function[i + 1];
 
-    while ((!is_operator(next_char)) || (!is_left_bracket(next_char)) || (!is_right_bracket(next_char))){
+    while ((!is_operator(next_char)) && (!is_left_bracket(next_char)) && (!is_right_bracket(next_char) && next_char)){
         ++i;
         next_char = function[i + 1];
     }
 
-    variable_name = calloc(sizeof(char), i+1);
+    variable_name = calloc(sizeof(char), i + 2);
     if (!variable_name){
         error = MEMORY_ERR;
-        return -1;
+        goto err;
     }
     
-    strncpy(variable_name, function, i+1);
+    strncpy(variable_name, function, i + 1);
 
     variable_id = get_variable(variable_name, generals);
     if(variable_id == -1){
+        printf("Unknown variable \'%s\'!\n", variable_name);
+        free(variable_name);
         error = VARIABLE_ERR;
-        return -1;
+        goto err;
     }
 
     free(variable_name);
@@ -183,39 +106,55 @@ int parse_variable(struct queue *queue, struct stack *stack, const char *functio
     coefs = calloc(sizeof(double), generals->variables_count);
     if (!coefs){
         error = MEMORY_ERR;
-        return -1;
+        goto err;
     }
 
-    if(!queue_record_init(&new_record, coefs, generals->variables_count, 0, NULL)){
-        return -1;
+    coefs[variable_id] = 1.0;
+
+    if(!output_record_init(&new_record, coefs, generals->variables_count, 0)){
+        free(coefs);
+        goto err;
     }
     
-    if(!queue_enqueue(queue, &new_record)){
-        error = POINTER_ERR;
-        return -1;
+    if(!stack_push(output_stack, &new_record)){
+        free(coefs);
+        goto err;
     }
 
     if (is_left_bracket(next_char)){
-        if(!parse_operator(queue, stack, MULTIPLY, sign)){
-            return -1;
+        if(!parse_operator(output_stack, input_stack, MULTIPLY)){
+            goto err;
         }
     }
 
-    return i;
+    return i + 1;
+
+    err:
+        return -1;
 }
 
-int parse_operator(struct queue *queue, struct stack *stack, const char current_char, int *sign){
-    char stack_out, current_char_cpy;
+int parse_operator(struct stack *output_stack, struct stack *input_stack, const char current_char){
+    char stack_out, current_char_cpy, multiply;
     int stack_priority, current_priority;
     operation operator;
-    struct queue_record operand_1, operand_2;
+    struct output_record operand_1, operand_2, new_record;
 
-    if(check_empty(stack)){
-        stack_push(stack, &current_char);
-        return 1;
+    if (!output_stack || !input_stack){
+        error = POINTER_ERR;
+        return 0;
     }
 
-    stack_pop(stack, &stack_out);
+    if(check_empty(input_stack)){
+        goto push;
+    }
+
+    if(!stack_head(input_stack, &stack_out)){
+        goto err;
+    }
+
+    if (is_left_bracket(stack_out)){
+        goto push;
+    }
 
     stack_priority = get_priority(stack_out);
     current_priority = get_priority(current_char);
@@ -226,80 +165,141 @@ int parse_operator(struct queue *queue, struct stack *stack, const char current_
     }
 
     while (stack_priority >= current_priority){
-        if (is_left_bracket(stack_out)){
-            break;
-        }
 
-        if(check_empty(stack)){
-            break;
+        if(!stack_pop(input_stack, &stack_out)){
+            goto err;
         }
 
         operator = get_operation(stack_out);
 
-        queue_dequeue(queue, &operand_2);
+        if(check_empty(output_stack)){
+            error = SYNTAX_ERR;
+            goto err;
+        }
 
-        queue_dequeue(queue, &operand_1);
+        if(!stack_pop(output_stack, &operand_2)){
+            goto err;
+        }
 
-        if (!evaluate(&operand_1, &operand_2, queue, operator)){
+        if(check_empty(output_stack)){
+            dealloc_record(&operand_2);
+            error = SYNTAX_ERR;
+            goto err;
+        }
+
+        if(!stack_pop(output_stack, &operand_1)){
+            dealloc_record(&operand_2);  
+            goto err;
+        }
+
+        if (!evaluate(&operand_1, &operand_2, output_stack, operator)){
+            goto err;
+        }
+
+        if(check_empty(input_stack)){
+            break;
+        }
+
+        if(!stack_head(input_stack, &stack_out)){
             return 0;
         }
 
-        stack_pop(stack, &stack_out);
+        if (is_left_bracket(stack_out)){
+            break;
+        }
+
         stack_priority = get_priority(stack_out);
     }
 
-    if (is_empty(queue)){
-        if(!check_unary_operator(current_char, sign)){
-            return 0;
+    push:
+    if (check_empty(output_stack)){
+        if(check_unary_operator(current_char, output_stack, input_stack) == -1){
+            goto err;
         }
+        return 1;
     }
     
     if (current_char == MINUS){
-        *sign = -1;
         current_char_cpy = PLUS;
+
+        if(!stack_push(input_stack, &current_char_cpy)){
+            goto err;
+        }
+
+        output_record_init(&new_record, NULL, 0, -1);
+        if(!stack_push(output_stack, &new_record)){
+            goto err;
+        }
+
+        multiply = MULTIPLY;
+        if(!stack_push(input_stack, &multiply)){
+            goto err;
+        }
     }
 
     else{
-        *sign = 1;
         current_char_cpy = current_char;
+
+        if(!stack_push(input_stack, &current_char_cpy)){
+            goto err;
+        }
     }
 
-    stack_push(stack, &current_char_cpy);
     return 1;
+
+    err:
+        return 0;
 }
 
-int check_unary_operator(const char operator, int *sign){
+int check_unary_operator(const char operator, struct stack *output_stack, struct stack *input_stack){
+    struct output_record new_record;
+    char multiply = MULTIPLY;
+
     switch (operator){
         case PLUS:
-            *sign = 1;
             return 1;
             break;
 
         case MINUS:
-            *sign = -1;
+            output_record_init(&new_record, NULL, 0, -1);
+            if(!stack_push(output_stack, &new_record)){
+                return -1;
+            }
+
+            if(!stack_push(input_stack, &multiply)){
+                return -1;
+            }
+
             return 1;
             break;
 
         case MULTIPLY:
             error = SYNTAX_ERR;
-            return 0;
+            return -1;
             break;
-
         default:
-            error = SYNTAX_ERR;
             return 0;
-            break;
+            break;            
     }
 }
 
-int parse_brackets(struct queue *queue, struct stack *stack, const char current_char){
+int parse_brackets(struct stack *output_stack, struct stack *input_stack, const char current_char){
     char stack_out;
-    struct queue_record operand_1, operand_2;
-    operation operate;
+    struct output_record operand_1, operand_2;
+    operation operate = NULL;
 
-    if(!stack_pop(stack, &stack_out)){
+    if (!output_stack || !input_stack){
+        error = POINTER_ERR;
+        goto err;
+    }
+
+    if (check_empty(input_stack)){
         error = SYNTAX_ERR;
-        return 0;
+        goto err;
+    }
+    
+    if(!stack_pop(input_stack, &stack_out)){
+        goto err;
     }
 
     while (!is_left_bracket(stack_out)){
@@ -308,156 +308,207 @@ int parse_brackets(struct queue *queue, struct stack *stack, const char current_
 
         if(!operate){
             error = SYNTAX_ERR;
-            return 0;
+            goto err;
         }
 
-        queue_dequeue(queue, &operand_2);
+        if(!stack_pop(output_stack, &operand_2)){
+            goto err;
+        }
 
-        queue_dequeue(queue, &operand_1);
+        if(!stack_pop(output_stack, &operand_1)){
+            dealloc_record(&operand_2);
+            goto err;
+        }
 
-        if (!evaluate(&operand_1, &operand_2, queue, operate)){
-            return 0;
+        if (!evaluate(&operand_1, &operand_2, output_stack, operate)){
+            goto err;
         }
         
-        if(!stack_pop(stack, &stack_out)){
-            error = SYNTAX_ERR;
-            return 0;
+        if(!stack_pop(input_stack, &stack_out)){
+            goto err;
         }
 
     }
 
     if (!is_equal_bracket(stack_out, current_char)){
         error = SYNTAX_ERR;
-        return 0;
+        goto err;
     }
-    return 1; 
+    return 1;
+
+    err:
+        return 0;
 }
 
-int evaluate(struct queue_record *operand_1, struct queue_record *operand_2, struct queue *queue, operation operator){
+int evaluate(struct output_record *operand_1, struct output_record *operand_2, struct stack *output_stack, operation operator){
+    if (!operand_1 || !operand_2 || !output_stack || !operator){
+        error = POINTER_ERR;
+        goto err;
+    }
+    
     if (operator == mul){
-        if (operand_1 && operand_2){
+        if (operand_1->coef_values && operand_2->coef_values){
+            dealloc_record(operand_1);
+            dealloc_record(operand_2);
             error = SYNTAX_ERR;
-            return 0;
+            goto err;
         }
 
-        if (operand_1){
+        if (operand_1->coef_values){
             if(!array_mul(operand_1->coef_values, operand_2->value, operand_1->arr_len)){
-                return 0;
+                dealloc_record(operand_1);
+                goto err;
             }
-            queue_enqueue(queue, operand_1);
+            if(!stack_push(output_stack, operand_1)){
+                dealloc_record(operand_1);
+                goto err;
+            }
+            return 1;
         }
 
-        if (operand_2){
+        if (operand_2->coef_values){
             if(!array_mul(operand_2->coef_values, operand_1->value, operand_2->arr_len)){
-                return 0;
+                dealloc_record(operand_2);
+                goto err;
             }
-            queue_enqueue(queue, operand_2);
+            if(!stack_push(output_stack, operand_2)){
+                dealloc_record(operand_2);
+                goto err;
+            }
+            return 1;
         }
 
         operand_1->value = operator(operand_1->value, operand_2->value);
-        queue_enqueue(queue, operand_1);
+        if(!stack_push(output_stack, operand_1)){
+            goto err;
+        }
         return 1;
     }
 
     else{
-        if (operand_1 && operand_2){
+        if (operand_1->coef_values && operand_2->coef_values){
             if(!array_sum(operand_1->coef_values, operand_2->coef_values, operand_1->arr_len)){
-                return 0;
+                dealloc_record(operand_1);
+                dealloc_record(operand_2);
+                goto err;
             }
 
-            free(operand_2->coef_values);
-            operand_2->coef_values = NULL;
+            dealloc_record(operand_2);
 
-            queue_enqueue(queue, operand_1);
+            if(!stack_push(output_stack, operand_1)){
+                dealloc_record(operand_1);
+                goto err;
+            }
             return 1;
         }
 
-        if (operand_1){
-            queue_enqueue(queue, operand_1);
+        if (operand_1->coef_values){
+            if(!stack_push(output_stack, operand_1)){
+                dealloc_record(operand_1);
+                goto err;
+            }
             return 1;
         }
 
-        if (operand_2){
-            queue_enqueue(queue, operand_2);
+        if (operand_2->coef_values){
+            if(!stack_push(output_stack, operand_2)){
+                dealloc_record(operand_2);
+                goto err;
+            }
             return 1;
         }
 
         operand_1->value = operator(operand_1->value, operand_2->value);
-        queue_enqueue(queue, operand_1);
+        if(!stack_push(output_stack, operand_1)){
+            goto err;
+        }
         return 1;
     }
-    
+
+    err:
+        return 0;   
 }
 
-int parse_number(struct stack *stack, struct queue *queue, const char *function, int *sign){
-    char current_char, next_char, dot_flag;
-    struct queue_record new_record;
+int parse_number(struct stack *input_stack, struct stack *output_stack, const char *function){
+    char current_char, previous_char, dot_flag;
+    struct output_record new_record;
     size_t i;
     char *number = NULL;
     double num_value;
-    char **ptr = NULL;
+    char *ptr;
+
+    if (!input_stack || !output_stack || !function){
+        error = POINTER_ERR;
+        goto err;
+    }
 
     i = 0;
     dot_flag = 0;
     current_char = function[i];
-    next_char = function[i+1];
-    while (isdigit(next_char) || next_char == DOT){
+    while (isdigit(current_char) || current_char == DOT){
 
-        if (next_char == DOT && dot_flag == 1){
+        if (current_char == DOT && dot_flag == 1){
             error = SYNTAX_ERR;
-            return -1;
+            goto err;
         }
 
-        else if (next_char == DOT){
+        else if (current_char == DOT){
             dot_flag = 1;
         }
 
+        if (dot_flag == 1 && i == 0){
+            error = SYNTAX_ERR;
+            goto err;
+        }
+
         ++i;
-        next_char = function[i+1];
         current_char = function[i];
+        previous_char = function[i - 1];
+
+        if (previous_char == DOT && !isdigit(current_char)){
+            error = SYNTAX_ERR;
+            goto err;
+        }
     }
 
-    if(current_char == DOT){
-        error = SYNTAX_ERR;
-        return -1;
-    }
-
-    number = malloc(sizeof(char) * i+1);
+    number = calloc(sizeof(char), i + 1);
     if (!number){
         error = MEMORY_ERR;
-        return -1;
+        goto err;
     }
 
-    strncpy(number, function, i+1);
-    num_value = strtod(number, ptr);
+    strncpy(number, function, i);
+    num_value = strtod(number, &ptr);
     free(number);
 
-    num_value *= *sign;
-
-    if(!queue_record_init(&new_record, NULL, 0, num_value, NULL)){
-        return -1;
+    if(!output_record_init(&new_record, NULL, 0, num_value)){
+        goto err;
     }
             
-    queue_enqueue(queue, &new_record);
+    if(!stack_push(output_stack, &new_record)){
+        goto err;
+    }
 
-    if(check_multiply(next_char)){
-        if(!parse_operator(queue, stack, MULTIPLY, sign)){
-            return 0;
+    if(check_multiply(current_char)){
+        if(!parse_operator(output_stack, input_stack, MULTIPLY)){
+            goto err;
         }
     }
     return i;
+
+    err:
+        return -1;
 }
 
-int queue_record_init(struct queue_record *queue_record, double *coef_values, size_t arr_len, double value, operation operator){
-    if (!queue_record){
-        error  = POINTER_ERR;
+int output_record_init(struct output_record *output_record, double *coef_values, size_t arr_len, double value){
+    if (!output_record){
+        error = POINTER_ERR;
         return 0;
     }
     
-    queue_record->coef_values = coef_values;
-    queue_record->operator = operator;
-    queue_record->arr_len = arr_len;
-    queue_record->value = value;
+    output_record->coef_values = coef_values;
+    output_record->arr_len = arr_len;
+    output_record->value = value;
 
     return 1;
 }
@@ -567,7 +618,7 @@ int is_equal_bracket(const char left_bracket, const char right_bracket){
         break;
 
     case ']':
-        if (left_bracket == ']'){
+        if (left_bracket == '['){
             return 1;
         }
 
@@ -577,4 +628,277 @@ int is_equal_bracket(const char left_bracket, const char right_bracket){
     }
 
     return 0; 
+}
+
+void delete_spaces(char *line){
+    size_t count, i;
+
+    count = i = 0;
+    if (!line){
+        return;
+    }
+    
+    for (i = 0; line[i]; ++i){
+        if (!isspace(line[i])){
+            line[count] = line[i];
+            ++count;
+        }
+    }
+
+    line[count] = '\0';
+    return;
+}
+
+void print_coefs(struct function *function, struct generals *generals){
+    size_t i;
+
+    if (!function || !generals){
+        return;
+    }
+
+    for (i = 0; i < generals->variables_count; ++i){
+        printf("Coeficient of variable %s is %f\n", generals->variables[i], function->coefs[i]);
+    }
+
+    return;   
+}
+
+int check_stacks(double *coef_array, struct stack *input_stack, struct stack *output_stack, size_t var_count){
+    char stack_out;
+    struct output_record operand_1, operand_2, result;
+    operation operator = NULL;
+
+    if(!coef_array || !input_stack || !output_stack){
+        error = POINTER_ERR;
+        goto err;
+    }
+
+    while (!check_empty(input_stack)){
+
+        if(check_empty(output_stack)){
+            error = SYNTAX_ERR;
+            goto err;
+        }
+
+        if(!stack_pop(output_stack, &operand_2)){
+            goto err;
+        }
+
+        if(check_empty(output_stack)){
+            dealloc_record(&operand_2);
+            error = SYNTAX_ERR;
+            goto err;
+        }
+
+        if(!stack_pop(output_stack, &operand_1)){
+            dealloc_record(&operand_2);
+            goto err;
+        }
+
+        if(!stack_pop(input_stack, &stack_out)){
+            dealloc_record(&operand_1);
+            dealloc_record(&operand_2);
+            goto err;
+        }
+
+        operator = get_operation(stack_out);
+
+        if(!operator){
+            dealloc_record(&operand_1);
+            dealloc_record(&operand_2);
+            goto err;
+        }
+
+        if(!evaluate(&operand_1, &operand_2, output_stack, operator)){
+            goto err;
+        }
+    }
+
+    if(check_empty(output_stack)){
+        error = SYNTAX_ERR;
+        goto err;
+    }
+
+    if(!stack_pop(output_stack, &result)){
+        goto err;
+    }
+
+    if(!check_empty(output_stack)){
+        error = SYNTAX_ERR;
+        free(result.coef_values);
+        goto err;
+    }
+
+    if (!result.coef_values){
+        return 1;
+    }
+
+    memcpy(coef_array, result.coef_values, var_count * sizeof(double));
+
+    free(result.coef_values);
+
+    return 1;
+
+    err:
+    return 0;
+}
+
+int parse_artithmetic_expression(char *expression, double *coef_array, const struct generals *generals){
+    struct stack *input_stack = NULL;
+    struct stack *output_stack = NULL;
+    char current_char, next_char;
+    int i, parse_number_result, parse_var_result, unary_operator_result;
+
+    if(!expression || !coef_array || !generals){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    input_stack = stack_alloc(sizeof(char));
+    if(!input_stack){
+        error = MEMORY_ERR;
+        return 0;
+    }
+
+    output_stack = stack_alloc(sizeof(struct output_record));
+    if(!input_stack){
+        error = MEMORY_ERR;
+        stack_dealloc(&input_stack);
+        return 0;
+    }
+
+    i = 0;
+
+    delete_spaces(expression);
+
+    while(expression[i] != '\0'){
+
+        current_char = expression[i];
+        next_char = expression[i + 1];
+
+        if (isdigit(current_char) || current_char == DOT){
+            parse_number_result = parse_number(input_stack, output_stack, &expression[i]);
+
+            if (parse_number_result == -1){
+                goto err;
+            }
+            i += parse_number_result;
+            continue;
+        }
+
+        if (is_left_bracket(current_char)){
+            if(!stack_push(input_stack, &current_char)){
+                goto err;
+            }
+
+            unary_operator_result = check_unary_operator(next_char, output_stack, input_stack);
+
+            if (unary_operator_result == -1){
+                goto err;
+            }
+
+            else if(unary_operator_result == 0){
+                ++i;
+                continue;
+            }
+
+            else{
+                i += 2;
+                continue;
+            }
+        }
+
+        if (is_right_bracket(current_char)){
+            if(!parse_brackets(output_stack, input_stack, current_char)){
+                goto err;
+            }
+
+            if (is_operator(next_char) || is_right_bracket(next_char) || (next_char == '\0')){
+                ++i;
+                continue;
+            }
+
+            else{
+                if(!parse_operator(output_stack, input_stack, MULTIPLY)){
+                    goto err;
+                }
+                ++i;
+                continue;
+            }
+        }
+
+        if (is_operator(current_char)){
+            if(!parse_operator(output_stack, input_stack, current_char)){
+                goto err;
+            }
+            ++i;
+            continue;
+        }
+
+        parse_var_result = parse_variable(output_stack, input_stack, &expression[i], generals);
+        if (parse_var_result == -1){
+            goto err;
+        }
+
+        i += parse_var_result;
+    }
+
+    if (!check_stacks(coef_array, input_stack, output_stack, generals->variables_count)){
+        goto err;
+    }
+
+    stack_dealloc(&output_stack);
+    stack_dealloc(&input_stack);
+    return 1;
+
+    err:
+    record_arrays_dealloc(output_stack);
+    stack_dealloc(&output_stack);
+    stack_dealloc(&input_stack);
+    return 0;
+}
+
+void record_arrays_dealloc(struct stack *output_stack){
+    struct output_record record;
+    if (!output_stack){
+        return;
+    }
+
+    while (!check_empty(output_stack)){
+        stack_pop(output_stack, &record);
+
+        dealloc_record(&record);    
+    }
+
+    return;   
+}
+
+void dealloc_record(struct output_record *record){
+    if (!record){
+        return;
+    }
+
+    if (record->coef_values){
+        free(record->coef_values);
+        record->coef_values = NULL;
+        return;
+    }
+    
+    return; 
+}
+
+void check_unused_variables(const struct function *function, const struct generals *generals){
+    size_t i;
+
+    if (!function || !generals){
+        return;
+    }
+
+    for (i = 0; i < generals->variables_count; ++i){
+        if (function->coefs[i] == 0){
+            printf("Warning: unused variable \'%s\'!\n", generals->variables[i]);
+        }  
+    }
+    
+    return;
 }

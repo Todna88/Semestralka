@@ -55,6 +55,7 @@ int main(int argc, char *argv[]){
     }
 
     if(process_file(file) == 0){
+        fclose(file);
         return error;
     }
 
