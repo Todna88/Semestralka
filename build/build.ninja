@@ -129,6 +129,22 @@ build CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj: C_COMPIL
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
   TARGET_PDB = lp.pdb
 
+build CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/subject_to.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\subject_to\subject_to.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\subject_to
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
+build CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.c || cmake_object_order_depends_target_lp
+  DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\bounds\bounds.c.obj.d
+  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  OBJECT_DIR = CMakeFiles\lp.dir
+  OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\bounds
+  TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
+  TARGET_PDB = lp.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lp
@@ -137,7 +153,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj: C_COMPIL
 #############################################
 # Link the executable lp.exe
 
-build lp.exe: C_EXECUTABLE_LINKER__lp_Debug CMakeFiles/lp.dir/src/lp.c.obj CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj CMakeFiles/lp.dir/src/flags/flags.c.obj CMakeFiles/lp.dir/src/file_proces/label/label.c.obj CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj CMakeFiles/lp.dir/src/stack/stack.c.obj CMakeFiles/lp.dir/src/node/node.c.obj CMakeFiles/lp.dir/src/queue/queue.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj
+build lp.exe: C_EXECUTABLE_LINKER__lp_Debug CMakeFiles/lp.dir/src/lp.c.obj CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj CMakeFiles/lp.dir/src/flags/flags.c.obj CMakeFiles/lp.dir/src/file_proces/label/label.c.obj CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj CMakeFiles/lp.dir/src/stack/stack.c.obj CMakeFiles/lp.dir/src/node/node.c.obj CMakeFiles/lp.dir/src/queue/queue.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.obj CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.obj
   FLAGS = -Wall -Wextra -pedantic -ansi -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lp.dir

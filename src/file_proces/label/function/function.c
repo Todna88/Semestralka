@@ -24,16 +24,12 @@ struct function *process_function(char *function, const struct generals *general
     i = 0;
 
     while(token != NULL){
-        if (search_variables(token, generals) == 1){
+        if (search_variables(token, generals)){
             if(!parse_artithmetic_expression(function, processed_function->coefs, generals)){
                 function_dealloc(&processed_function);
                 goto err;
             }
             token = strtok(NULL, splitter);
-        }
-
-        else if(search_variables(token, generals) == -1){
-            goto err;
         }
 
         else{
@@ -44,16 +40,17 @@ struct function *process_function(char *function, const struct generals *general
     }
 
     if ((i == 0) || (i > 2)){
+        function_dealloc(&processed_function);
         error = SYNTAX_ERR;
         goto err;
     }
 
-    check_unused_variables(processed_function, generals);
+    check_unused_variables(processed_function->coefs, generals);
 
     return processed_function;
 
     err:
-    return NULL;
+        return NULL;
 }
 
 int check_multiply(const char next_char){
@@ -649,7 +646,7 @@ void delete_spaces(char *line){
     return;
 }
 
-void print_coefs(struct function *function, struct generals *generals){
+void func_print_coefs(struct function *function, struct generals *generals){
     size_t i;
 
     if (!function || !generals){
@@ -657,7 +654,7 @@ void print_coefs(struct function *function, struct generals *generals){
     }
 
     for (i = 0; i < generals->variables_count; ++i){
-        printf("Coeficient of variable %s is %f\n", generals->variables[i], function->coefs[i]);
+        printf("Function coeficient of variable %s is %f\n", generals->variables[i], function->coefs[i]);
     }
 
     return;   
@@ -887,15 +884,15 @@ void dealloc_record(struct output_record *record){
     return; 
 }
 
-void check_unused_variables(const struct function *function, const struct generals *generals){
+void check_unused_variables(const double *coefs, const struct generals *generals){
     size_t i;
 
-    if (!function || !generals){
+    if (!coefs || !generals){
         return;
     }
 
     for (i = 0; i < generals->variables_count; ++i){
-        if (function->coefs[i] == 0){
+        if (coefs[i] == 0){
             printf("Warning: unused variable \'%s\'!\n", generals->variables[i]);
         }  
     }

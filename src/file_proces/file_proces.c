@@ -4,10 +4,13 @@ int process_file(FILE *file){
     struct divided_file *divided_file = NULL;
     struct generals *generals = NULL;
     struct function *function = NULL;
+    struct subject_to *subject_to = NULL;
+    struct bounds *bounds = NULL;
+
     divided_file = divide_file(file);
 
     if (!divided_file){
-        goto err;
+        return 0;
     }
 
     generals = process_generals(divided_file->generals, divided_file->generals_line_count);
@@ -22,18 +25,36 @@ int process_file(FILE *file){
         goto err;
     }
 
-    print_generals(generals);
-    print_coefs(function, generals);
+    subject_to = process_subject_to(divided_file->subject_to, divided_file->subject_to_line_count, generals);
 
+    if(!subject_to){
+        goto err;
+    }
+
+    bounds = process_bounds(divided_file->bounds, divided_file->bounds_line_count, generals);
+
+    if(!bounds){
+        goto err;
+    }
+
+    print_generals(generals);
+    func_print_coefs(function, generals);
+    subj_print_coefs(subject_to, generals);
+    print_bounds(bounds, generals);
+
+    bounds_dealloc(&bounds, generals->variables_count);
     generals_dealloc(&generals);
     function_dealloc(&function);
+    subject_to_dealloc(&subject_to);
     divided_file_dealloc(&divided_file);
 
     return 1;
 
     err:
+        bounds_dealloc(&bounds, generals->variables_count);
         generals_dealloc(&generals);
         function_dealloc(&function);
+        subject_to_dealloc(&subject_to);
         divided_file_dealloc(&divided_file);
         return 0;
 }
@@ -54,7 +75,7 @@ struct divided_file *divide_file(FILE *file){
     }
     
     while (fgets(line, sizeof(line), file)) {
-        CHECK_LINE_LENGTH(line)
+        CHECK_LINE_LENGTH(line, file)
 
         DELETE_COMMS(line)
 
@@ -85,7 +106,7 @@ struct divided_file *divide_file(FILE *file){
         {
         case 1:
             ++line_count;
-            if(subject_to_alloc(divided_file, label_line_len, line_count, line) == 0){
+            if(subj_to_alloc(divided_file, label_line_len, line_count, line) == 0){
                 goto err;
             }
             continue;
@@ -121,7 +142,7 @@ struct divided_file *divide_file(FILE *file){
 
         case 4:
             ++line_count;
-            if(bounds_alloc(divided_file, label_line_len, line_count, line) == 0){
+            if(bound_alloc(divided_file, label_line_len, line_count, line) == 0){
                 goto err;
             }
             continue;
@@ -136,6 +157,10 @@ struct divided_file *divide_file(FILE *file){
             break;
 
         case 6:
+            if (!check_mandatory_labels(divided_file)){
+                goto err;
+            }
+            
             goto end;
             break;
         }
@@ -143,11 +168,11 @@ struct divided_file *divide_file(FILE *file){
 
     error = SYNTAX_ERR;
     err:
-    divided_file_dealloc(&divided_file);
-    return NULL;
+        divided_file_dealloc(&divided_file);
+        return NULL;
 
     end:
-    return divided_file;
+        return divided_file;
 }
 
 struct divided_file *divided_file_alloc(){
@@ -186,7 +211,7 @@ int divided_file_init(struct divided_file *divided_file){
     return 1;
 }
 
-int subject_to_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line){
+int subj_to_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line){
     char **new_lines = NULL;
     if (!file || !line || line_len == 0 || line_count == 0){
         error = POINTER_ERR;
@@ -232,7 +257,7 @@ int func_alloc(struct divided_file *file, const size_t line_len, char *function_
     return 1;
 }
 
-int bounds_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line){
+int bound_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line){
     char **new_lines = NULL;
     if (!file || !line || line_len == 0 || line_count == 0){
         error = POINTER_ERR;
@@ -375,4 +400,18 @@ void label_dealloc(char ***label, const size_t line_count){
     *label = NULL;
 
     return;
+}
+
+int check_mandatory_labels(struct divided_file *file){
+    if(!file){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    if (!file->function || !file->generals || !file->subject_to){
+        error = SYNTAX_ERR;
+        return 0;
+    }
+    
+    return 1;
 }

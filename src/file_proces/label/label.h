@@ -22,8 +22,8 @@
             break;                  \
         }                           
 
-#define CHECK_LINE_LENGTH(line)                                                     \
-    if(!strchr(line,'\n') && !strchr(line, EOF) && !strpbrk(line, "\r\n")){         \
+#define CHECK_LINE_LENGTH(line, file)                                               \
+    if(!strchr(line,'\n') && !feof(file) && !strpbrk(line, "\r\n")){                \
             error = LINE_ERR;                                                       \
             return NULL;                                                            \
         }

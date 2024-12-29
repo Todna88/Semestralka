@@ -56,7 +56,7 @@ int is_equal_bracket(const char left_bracket, const char right_bracket);
 
 void delete_spaces(char * line);
 
-void print_coefs(struct function *function, struct generals *generals);
+void func_print_coefs(struct function *function, struct generals *generals);
 
 int check_stacks(double *coef_array, struct stack *input_stack, struct stack *output_stack, size_t var_count);
 
@@ -64,6 +64,6 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
 
 void dealloc_record(struct output_record *record);
 
-void check_unused_variables(const struct function *function, const struct generals *generals);
+void check_unused_variables(const double *coefs, const struct generals *generals);
 
 #endif

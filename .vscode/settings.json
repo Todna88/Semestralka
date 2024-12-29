@@ -9,7 +9,12 @@
         "generals.h": "c",
         "function.h": "c",
         "ctype.h": "c",
-        "stack.h": "c"
+        "stack.h": "c",
+        "operators.h": "c",
+        "functional": "c",
+        "subject_to.h": "c",
+        "strings.h": "c",
+        "algorithm": "c"
     },
     "C_Cpp.dimInactiveRegions": true
 }

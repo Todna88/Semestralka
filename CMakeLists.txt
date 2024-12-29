@@ -14,4 +14,6 @@ add_executable(lp
     src/queue/queue.c
     src/file_proces/label/function/function.c
     src/file_proces/label/function/operators.c
+    src/file_proces/label/subject_to/subject_to.c
+    src/file_proces/label/bounds/bounds.c
 )

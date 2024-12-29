@@ -58,5 +58,17 @@
   "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\operators.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\operators.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\operators.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\operators.c.obj"
+},
+{
+  "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\subject_to\\subject_to.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\subject_to\\subject_to.c",
+  "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\subject_to\\subject_to.c",
+  "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\subject_to\\subject_to.c.obj"
+},
+{
+  "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
+  "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
+  "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj"
 }
 ]

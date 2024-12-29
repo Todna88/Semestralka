@@ -1,5 +1,7 @@
 #include "label/generals/generals.h"
 #include "label/function/function.h"
+#include "label/subject_to/subject_to.h"
+#include "label/bounds/bounds.h"
 
 #ifndef FILE_PROCES_H
 #define FILE_PROCES_H
@@ -36,11 +38,11 @@ struct divided_file *divided_file_alloc();
 
 int divided_file_init(struct divided_file *divided_file);
 
-int subject_to_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char * line);
+int subj_to_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char * line);
 
 int func_alloc(struct divided_file *file, const size_t line_len, char *function_type, const char *line);
 
-int bounds_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line);
+int bound_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line);
 
 int gen_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line);
 
@@ -55,5 +57,7 @@ void divided_file_dealloc(struct divided_file **devided_file);
 void divided_file_deinit(struct divided_file *devided_file);
 
 void label_dealloc(char ***label, const size_t line_count);
+
+int check_mandatory_labels(struct divided_file *file);
 
 #endif

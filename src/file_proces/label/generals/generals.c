@@ -19,7 +19,7 @@ struct generals *process_generals(char **generals, const size_t line_count){
     return processed_generals;
 
     err:
-    return NULL;
+        return NULL;
 }
 
 int get_variables(char *line, struct generals *generals){
@@ -259,8 +259,7 @@ int search_variables(char *line, const struct generals *generals){
     size_t i;
 
     if (!line || !generals){
-        error = POINTER_ERR;
-        return -1;
+        return 0;
     }
     
 
