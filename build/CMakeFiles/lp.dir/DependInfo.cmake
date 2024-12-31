@@ -18,7 +18,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/flags/flags.c" "CMakeFiles/lp.dir/src/flags/flags.c.o" "gcc" "CMakeFiles/lp.dir/src/flags/flags.c.o.d"
   "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/lp.c" "CMakeFiles/lp.dir/src/lp.c.o" "gcc" "CMakeFiles/lp.dir/src/lp.c.o.d"
   "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c" "CMakeFiles/lp.dir/src/node/node.c.o" "gcc" "CMakeFiles/lp.dir/src/node/node.c.o.d"
-  "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/queue/queue.c" "CMakeFiles/lp.dir/src/queue/queue.c.o" "gcc" "CMakeFiles/lp.dir/src/queue/queue.c.o.d"
+  "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/simplex/simplex.c" "CMakeFiles/lp.dir/src/simplex/simplex.c.o" "gcc" "CMakeFiles/lp.dir/src/simplex/simplex.c.o.d"
   "/mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c" "CMakeFiles/lp.dir/src/stack/stack.c.o" "gcc" "CMakeFiles/lp.dir/src/stack/stack.c.o.d"
   )
 

@@ -1,16 +1,17 @@
 #include"file_proces.h"
 
-int process_file(FILE *file){
+struct processed_file *process_file(FILE *file){
     struct divided_file *divided_file = NULL;
     struct generals *generals = NULL;
     struct function *function = NULL;
     struct subject_to *subject_to = NULL;
     struct bounds *bounds = NULL;
+    struct processed_file *processed_file = NULL;
 
     divided_file = divide_file(file);
 
     if (!divided_file){
-        return 0;
+        return NULL;
     }
 
     generals = process_generals(divided_file->generals, divided_file->generals_line_count);
@@ -19,7 +20,7 @@ int process_file(FILE *file){
         goto err;
     }
 
-    function = process_function(divided_file->function, generals);
+    function = process_function(divided_file->function, divided_file->function_type, generals);
 
     if(!function){
         goto err;
@@ -37,18 +38,21 @@ int process_file(FILE *file){
         goto err;
     }
 
-    print_generals(generals);
-    func_print_coefs(function, generals);
-    subj_print_coefs(subject_to, generals);
-    print_bounds(bounds, generals);
+    processed_file = processed_file_alloc(generals, function, subject_to, bounds);
 
-    bounds_dealloc(&bounds, generals->variables_count);
-    generals_dealloc(&generals);
-    function_dealloc(&function);
-    subject_to_dealloc(&subject_to);
+    if(!processed_file){
+        goto err;
+    }
+
+    check_unused_variables(function, subject_to, generals);
+
+    /*print_generals(generals);*/
+    /*func_print_coefs(function, generals);*/
+    /*subj_print_coefs(subject_to, generals);*/
+    /*print_bounds(bounds, generals);*/
+
     divided_file_dealloc(&divided_file);
-
-    return 1;
+    return processed_file;
 
     err:
         bounds_dealloc(&bounds, generals->variables_count);
@@ -56,7 +60,7 @@ int process_file(FILE *file){
         function_dealloc(&function);
         subject_to_dealloc(&subject_to);
         divided_file_dealloc(&divided_file);
-        return 0;
+        return NULL;
 }
 
 struct divided_file *divide_file(FILE *file){
@@ -158,6 +162,11 @@ struct divided_file *divide_file(FILE *file){
 
         case 6:
             if (!check_mandatory_labels(divided_file)){
+                goto err;
+            }
+
+            if(!check_end_file(file)){
+                error = SYNTAX_ERR;
                 goto err;
             }
             
@@ -414,4 +423,105 @@ int check_mandatory_labels(struct divided_file *file){
     }
     
     return 1;
+}
+
+int check_end_file(FILE *file){
+    char line[LINE_LENGTH];
+
+    while (fgets(line, sizeof(line), file)) {
+        if(line[0] == '\n' || !strncmp(line, "\r\n", 2)){
+            continue;
+        }
+
+        return 0;
+    }
+
+    return 1;
+}
+
+struct processed_file *processed_file_alloc(struct generals *generals, struct function *function, struct subject_to *subject_to, struct bounds *bounds){
+    struct processed_file *new_processed_file = NULL;
+
+    if (!generals || !function || !subject_to || !bounds){
+        error = POINTER_ERR;
+        return NULL;
+    }
+
+    new_processed_file = malloc(sizeof(*new_processed_file));
+
+    if (!new_processed_file){
+        error = MEMORY_ERR;
+        return NULL;
+    }
+    
+    if (!processed_file_init(new_processed_file, generals, function, subject_to, bounds)){
+        free(new_processed_file);
+        return NULL;
+    }
+
+    return new_processed_file;
+}
+
+
+int processed_file_init(struct processed_file *processed_file, struct generals *generals, struct function *function, struct subject_to *subject_to, struct bounds *bounds){
+        if (!processed_file || !generals || !function || !subject_to || !bounds){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    processed_file->generals = generals;
+    processed_file->function = function;
+    processed_file->subject_to = subject_to;
+    processed_file->bounds = bounds;
+
+    return 1;
+}
+
+void processed_file_dealloc(struct processed_file **processed_file){
+    if (!processed_file || !(*processed_file)){
+        return;
+    }
+
+    processed_file_deinit(*processed_file);
+    free(*processed_file);
+    *processed_file = NULL;
+    return;
+}
+
+void processed_file_deinit(struct processed_file *processed_file){
+    if (!processed_file){
+        return;
+    }
+
+    bounds_dealloc(&processed_file->bounds, processed_file->generals->variables_count);
+    generals_dealloc(&processed_file->generals);
+    function_dealloc(&processed_file->function);
+    subject_to_dealloc(&processed_file->subject_to);
+
+    return;
+}
+
+void check_unused_variables(const struct function *function, const struct subject_to *subject_to, const struct generals *generals){
+    size_t i, j, checker;
+
+    if (!function || !subject_to || !generals){
+        return;
+    }
+
+    checker = 0;
+    for (i = 0; i < generals->variables_count; ++i){
+        checker += function->coefs[i];
+
+        for (j = 0; j < subject_to->line_count; ++j){
+            checker += subject_to->coefs[j][i];
+        }
+
+        if (checker == 0){
+            printf("Warning: unused variable \'%s\'!\n", generals->variables[i]);
+        }
+        
+        checker = 0;
+    }
+
+    return;
 }

@@ -1,9 +1,11 @@
-\ uloha z uvodu zadani
-Subject To \ poradi neni fixni
-vyroba: x_1 + 2x_2 < 8
-baleni: 2 *x_1 + 1 * x_2 <= 6
-Maximize
--5.8[x_1+{7.87*(8.458*(x_2))}] = z\ ucelova funkce
+Subject To
+bound_a: 2x - y >= 2
+bound_b: x - 2y >= -2
+Minimize
+x - ([[y]])
 Generals
-x_2 x_1
+x y
+Bounds
+x >= 0
+y >= 0
 End

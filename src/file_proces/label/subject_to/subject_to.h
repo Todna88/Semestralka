@@ -35,4 +35,10 @@ int control_subject_to(char *subject_to);
 
 void subj_print_coefs(struct subject_to *subject_to, struct generals *generals);
 
+int copy_sub_matrix(struct subject_to *subject_to, struct subject_to *smaller_subject_to, size_t var_count_bigger, size_t var_count_smaller);
+
+int check_line_syntax(char *line);
+
+void switch_signs(double *coefs, size_t var_count);
+
 #endif

@@ -9,7 +9,7 @@ const struct operators OPERATORS[] = {
 const size_t OPERATORS_COUNT = sizeof(OPERATORS) / sizeof(*OPERATORS);
 
 int get_priority(const char operator){
-    int i;
+    size_t i;
 
     for (i = 0; i < OPERATORS_COUNT; ++i) {
         if (OPERATORS[i].operator == operator) {

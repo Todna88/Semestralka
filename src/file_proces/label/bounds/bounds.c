@@ -129,6 +129,7 @@ int check_syntax(int variable_id, double *values, char *constr, size_t values_le
     }
 
     if(variable_id == -1){
+        error = SYNTAX_ERR;
         return 0;
     }
 

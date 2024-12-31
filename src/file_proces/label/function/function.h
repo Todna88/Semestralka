@@ -8,6 +8,10 @@
 
 #define DOT '.'
 
+#define MIN_TYPE "Minimalize"
+
+#define MAX_TYPE "Maximalize"
+
 struct function{
     double *coefs;
 };
@@ -34,7 +38,7 @@ int evaluate(struct output_record *operand_1, struct output_record *operand_2, s
 
 int output_record_init(struct output_record *output_record, double *coef_values, size_t arr_len, double value);
 
-struct function *process_function(char *function, const struct generals *generals);
+struct function *process_function(char *function, char *function_type, const struct generals *generals);
 
 int control_function(char *function);
 
@@ -64,6 +68,6 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
 
 void dealloc_record(struct output_record *record);
 
-void check_unused_variables(const double *coefs, const struct generals *generals);
+int check_type_of_task(struct function *function, char *function_type, const size_t var_count);
 
 #endif

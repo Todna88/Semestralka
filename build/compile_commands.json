@@ -43,12 +43,6 @@
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\queue\\queue.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\queue\\queue.c",
-  "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\queue\\queue.c",
-  "output": "CMakeFiles\\lp.dir\\src\\queue\\queue.c.obj"
-},
-{
-  "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
   "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\function.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\function.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\function.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\function.c.obj"
@@ -70,5 +64,11 @@
   "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj"
+},
+{
+  "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\simplex\\simplex.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\simplex\\simplex.c",
+  "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\simplex\\simplex.c",
+  "output": "CMakeFiles\\lp.dir\\src\\simplex\\simplex.c.obj"
 }
 ]

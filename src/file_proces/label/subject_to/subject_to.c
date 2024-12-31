@@ -19,6 +19,12 @@ struct subject_to *process_subject_to(char **subject_to, size_t line_count, cons
     i = 0;
     j = 0;
     for (i = 0; i < line_count; ++i){
+
+        if(!check_line_syntax(subject_to[i])){
+            subject_to_dealloc(&processed_subject_to);
+            return NULL;  
+        }
+
         equation = strtok(subject_to[i], TEXT_SPLITTER);
 
         while (equation != NULL){
@@ -36,7 +42,6 @@ struct subject_to *process_subject_to(char **subject_to, size_t line_count, cons
         }
 
         j = 0;
-        check_unused_variables(processed_subject_to->coefs[i], generals);
     }
 
     return processed_subject_to;
@@ -75,12 +80,26 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
                 else{
                     subject_to->right_sides[id] = strtod(token, &ptr);
                 }
+
+                if(*ptr != '\0'){
+                    error = SYNTAX_ERR;
+                    goto err;
+                }
             }
             
             token = strtok(NULL, lower);
         }
 
-        subject_to->operators[id] = LOWER;
+        if(subject_to->right_sides[id] < 0){
+            subject_to->operators[id] = HIGHER;
+            subject_to->right_sides[id] = subject_to->right_sides[id] * -1.0;
+            switch_signs(subject_to->coefs[id], generals->variables_count);
+        }
+
+        else{
+            subject_to->operators[id] = LOWER;
+        }
+
         return 1;
     }
 
@@ -106,7 +125,16 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
             token = strtok(NULL, higher);
         }
 
-        subject_to->operators[id] = HIGHER;
+        if(subject_to->right_sides[id] < 0){
+            subject_to->operators[id] = LOWER;
+            subject_to->right_sides[id] = subject_to->right_sides[id] * -1.0;
+            switch_signs(subject_to->coefs[id], generals->variables_count);
+        }
+
+        else{
+            subject_to->operators[id] = HIGHER;
+        }
+
         return 1;      
     }
 
@@ -290,4 +318,62 @@ void subj_print_coefs(struct subject_to *subject_to, struct generals *generals){
     }
     
     return;   
+}
+
+int copy_sub_matrix(struct subject_to *subject_to, struct subject_to *smaller_subject_to, size_t var_count_bigger, size_t var_count_smaller){
+    size_t i;
+
+    if(!subject_to || !smaller_subject_to || (var_count_smaller > var_count_bigger)){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    for (i = 0; i < subject_to->line_count; ++i){
+        memcpy(subject_to->coefs[i], smaller_subject_to->coefs[i], sizeof(double) * var_count_smaller);
+    }
+
+    memcpy(subject_to->operators, smaller_subject_to->operators, sizeof(char) * subject_to->line_count);
+    memcpy(subject_to->right_sides, smaller_subject_to->right_sides, sizeof(double) * subject_to->line_count);
+    
+    return 1;
+}
+
+int check_line_syntax(char *line){
+    size_t i;
+    int j;
+
+    if(!line){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    i = 0;
+    j = 0;
+    while (line[i] != '\0'){
+        if (line[i] == ':'){
+            ++j;
+        }
+        ++i;
+    }
+
+    if (j != 1){
+        error = SYNTAX_ERR;
+        return 0;
+    }
+
+    return 1;
+}
+
+void switch_signs(double *coefs, size_t var_count){
+    size_t i;
+
+    if(!coefs || var_count == 0){
+        return;
+    }
+
+    for (i = 0; i < var_count; ++i){
+        coefs[i] = coefs[i] * -1.0;
+    }
+
+    return;
 }

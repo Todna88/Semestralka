@@ -1,6 +1,6 @@
 #include "function.h"
 
-struct function *process_function(char *function, const struct generals *generals){
+struct function *process_function(char *function, char *function_type, const struct generals *generals){
     struct function *processed_function = NULL;
     char splitter[2] = "=";
     char *token;
@@ -45,7 +45,10 @@ struct function *process_function(char *function, const struct generals *general
         goto err;
     }
 
-    check_unused_variables(processed_function->coefs, generals);
+    if(!check_type_of_task(processed_function, function_type, generals->variables_count)){
+        function_dealloc(&processed_function);
+        goto err;
+    }
 
     return processed_function;
 
@@ -309,6 +312,12 @@ int parse_brackets(struct stack *output_stack, struct stack *input_stack, const 
         }
 
         if(!stack_pop(output_stack, &operand_2)){
+            goto err;
+        }
+
+        if (check_empty(output_stack)){
+            dealloc_record(&operand_2);
+            error = SYNTAX_ERR;
             goto err;
         }
 
@@ -884,18 +893,19 @@ void dealloc_record(struct output_record *record){
     return; 
 }
 
-void check_unused_variables(const double *coefs, const struct generals *generals){
+int check_type_of_task(struct function *function, char *function_type, const size_t var_count){
     size_t i;
 
-    if (!coefs || !generals){
-        return;
+    if(!function || !function_type){
+        error = POINTER_ERR;
+        return 0;
     }
 
-    for (i = 0; i < generals->variables_count; ++i){
-        if (coefs[i] == 0){
-            printf("Warning: unused variable \'%s\'!\n", generals->variables[i]);
-        }  
+    if (!strcmp(function_type, MIN_TYPE)){
+        for (i = 0; i < var_count; ++i){
+            function->coefs[i] = function->coefs[i] * -1.0;
+        }
     }
-    
-    return;
+
+    return 1;
 }

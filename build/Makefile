@@ -369,29 +369,29 @@ src/node/node.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/node/node.c.s
 .PHONY : src/node/node.c.s
 
-src/queue/queue.o: src/queue/queue.c.o
-.PHONY : src/queue/queue.o
+src/simplex/simplex.o: src/simplex/simplex.c.o
+.PHONY : src/simplex/simplex.o
 
 # target to build an object file
-src/queue/queue.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/queue/queue.c.o
-.PHONY : src/queue/queue.c.o
+src/simplex/simplex.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/simplex/simplex.c.o
+.PHONY : src/simplex/simplex.c.o
 
-src/queue/queue.i: src/queue/queue.c.i
-.PHONY : src/queue/queue.i
+src/simplex/simplex.i: src/simplex/simplex.c.i
+.PHONY : src/simplex/simplex.i
 
 # target to preprocess a source file
-src/queue/queue.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/queue/queue.c.i
-.PHONY : src/queue/queue.c.i
+src/simplex/simplex.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/simplex/simplex.c.i
+.PHONY : src/simplex/simplex.c.i
 
-src/queue/queue.s: src/queue/queue.c.s
-.PHONY : src/queue/queue.s
+src/simplex/simplex.s: src/simplex/simplex.c.s
+.PHONY : src/simplex/simplex.s
 
 # target to generate assembly for a file
-src/queue/queue.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/queue/queue.c.s
-.PHONY : src/queue/queue.c.s
+src/simplex/simplex.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lp.dir/build.make CMakeFiles/lp.dir/src/simplex/simplex.c.s
+.PHONY : src/simplex/simplex.c.s
 
 src/stack/stack.o: src/stack/stack.c.o
 .PHONY : src/stack/stack.o
@@ -456,9 +456,9 @@ help:
 	@echo "... src/node/node.o"
 	@echo "... src/node/node.i"
 	@echo "... src/node/node.s"
-	@echo "... src/queue/queue.o"
-	@echo "... src/queue/queue.i"
-	@echo "... src/queue/queue.s"
+	@echo "... src/simplex/simplex.o"
+	@echo "... src/simplex/simplex.i"
+	@echo "... src/simplex/simplex.s"
 	@echo "... src/stack/stack.o"
 	@echo "... src/stack/stack.i"
 	@echo "... src/stack/stack.s"

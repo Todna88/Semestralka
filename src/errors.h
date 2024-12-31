@@ -2,7 +2,7 @@
 #define ERRORS_H
 
 #define INPUT_FILE_ERR 1
-#define OUTPUT_FILE ERR 2
+#define OUTPUT_FILE_ERR 2
 #define VARIABLE_ERR 10
 #define SYNTAX_ERR 11
 #define FUNC_BOUND_ERR 20

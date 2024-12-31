@@ -42,4 +42,8 @@ int generals_set_variables_count(struct generals *generals, const size_t var_cou
 
 int search_variables(char *line, const struct generals *generals);
 
+int check_variable_name(char *variable_name);
+
+int generals_cpy(struct generals *new_generals, struct generals *old_generals);
+
 #endif
