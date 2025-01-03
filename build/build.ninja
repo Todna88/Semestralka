@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_lp: phony || .
 
 build CMakeFiles/lp.dir/src/lp.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/lp.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\lp.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -59,7 +59,7 @@ build CMakeFiles/lp.dir/src/lp.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/F
 
 build CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/file_proces.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\file_proces.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -67,7 +67,7 @@ build CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj: C_COMPILER__lp_unscan
 
 build CMakeFiles/lp.dir/src/flags/flags.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/flags/flags.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\flags\flags.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\flags
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -75,7 +75,7 @@ build CMakeFiles/lp.dir/src/flags/flags.c.obj: C_COMPILER__lp_unscanned_Debug D$
 
 build CMakeFiles/lp.dir/src/file_proces/label/label.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\label.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -83,7 +83,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/label.c.obj: C_COMPILER__lp_unscan
 
 build CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\generals\generals.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\generals
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -91,7 +91,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj: C_COMPILE
 
 build CMakeFiles/lp.dir/src/stack/stack.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\stack\stack.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\stack
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -99,7 +99,7 @@ build CMakeFiles/lp.dir/src/stack/stack.c.obj: C_COMPILER__lp_unscanned_Debug D$
 
 build CMakeFiles/lp.dir/src/node/node.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\node\node.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\node
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -107,7 +107,7 @@ build CMakeFiles/lp.dir/src/node/node.c.obj: C_COMPILER__lp_unscanned_Debug D$:/
 
 build CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\function\function.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\function
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -115,7 +115,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj: C_COMPILE
 
 build CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\function\operators.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\function
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -123,7 +123,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj: C_COMPIL
 
 build CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/subject_to.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\subject_to\subject_to.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\subject_to
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -131,7 +131,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.obj: C_COM
 
 build CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\file_proces\label\bounds\bounds.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\file_proces\label\bounds
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -139,7 +139,7 @@ build CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.obj: C_COMPILER__l
 
 build CMakeFiles/lp.dir/src/simplex/simplex.c.obj: C_COMPILER__lp_unscanned_Debug D$:/Škola/FAV/ZS_02/pc/Semestralka/src/simplex/simplex.c || cmake_object_order_depends_target_lp
   DEP_FILE = CMakeFiles\lp.dir\src\simplex\simplex.c.obj.d
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   OBJECT_DIR = CMakeFiles\lp.dir
   OBJECT_FILE_DIR = CMakeFiles\lp.dir\src\simplex
   TARGET_COMPILE_PDB = CMakeFiles\lp.dir\
@@ -154,7 +154,7 @@ build CMakeFiles/lp.dir/src/simplex/simplex.c.obj: C_COMPILER__lp_unscanned_Debu
 # Link the executable lp.exe
 
 build lp.exe: C_EXECUTABLE_LINKER__lp_Debug CMakeFiles/lp.dir/src/lp.c.obj CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj CMakeFiles/lp.dir/src/flags/flags.c.obj CMakeFiles/lp.dir/src/file_proces/label/label.c.obj CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj CMakeFiles/lp.dir/src/stack/stack.c.obj CMakeFiles/lp.dir/src/node/node.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.obj CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.obj CMakeFiles/lp.dir/src/simplex/simplex.c.obj
-  FLAGS = -Wall -Wextra -pedantic -ansi -g
+  FLAGS = -Wall -Wextra -pedantic -ansi -g -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lp.dir
   POST_BUILD = cd .

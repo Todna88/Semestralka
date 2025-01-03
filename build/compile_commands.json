@@ -1,73 +1,73 @@
 [
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\lp.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\lp.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\lp.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\lp.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\lp.c",
   "output": "CMakeFiles\\lp.dir\\src\\lp.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\file_proces.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\file_proces.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\file_proces.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\file_proces.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\file_proces.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\file_proces.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\flags\\flags.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\flags\\flags.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\flags\\flags.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\flags\\flags.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\flags\\flags.c",
   "output": "CMakeFiles\\lp.dir\\src\\flags\\flags.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\label.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\label.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\label.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\label.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\label.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\label.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\generals\\generals.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\generals\\generals.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\generals\\generals.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\generals\\generals.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\generals\\generals.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\generals\\generals.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\stack\\stack.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack\\stack.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\stack\\stack.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack\\stack.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\stack\\stack.c",
   "output": "CMakeFiles\\lp.dir\\src\\stack\\stack.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\node\\node.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\node\\node.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\node\\node.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\node\\node.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\node\\node.c",
   "output": "CMakeFiles\\lp.dir\\src\\node\\node.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\function.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\function.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\function.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\function.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\function.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\function.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\operators.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\operators.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\operators.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\operators.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\function\\operators.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\function\\operators.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\subject_to\\subject_to.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\subject_to\\subject_to.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\subject_to\\subject_to.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\subject_to\\subject_to.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\subject_to\\subject_to.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\subject_to\\subject_to.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\file_proces\\label\\bounds\\bounds.c",
   "output": "CMakeFiles\\lp.dir\\src\\file_proces\\label\\bounds\\bounds.c.obj"
 },
 {
   "directory": "D:/Škola/FAV/ZS_02/pc/Semestralka/build",
-  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -o CMakeFiles\\lp.dir\\src\\simplex\\simplex.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\simplex\\simplex.c",
+  "command": "D:\\Programy\\Perl\\c\\bin\\gcc.exe -Wall -Wextra -pedantic -ansi -g -g -o CMakeFiles\\lp.dir\\src\\simplex\\simplex.c.obj -c D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\simplex\\simplex.c",
   "file": "D:\\Škola\\FAV\\ZS_02\\pc\\Semestralka\\src\\simplex\\simplex.c",
   "output": "CMakeFiles\\lp.dir\\src\\simplex\\simplex.c.obj"
 }

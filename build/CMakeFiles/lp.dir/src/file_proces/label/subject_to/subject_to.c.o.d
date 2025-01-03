@@ -31,7 +31,6 @@ CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/../function/../generals/generals.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/../function/../generals/../label.h \
- /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/../function/../generals/../../../errors.h \
  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/../function/../../../stack/stack.h \
  /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endianness.h

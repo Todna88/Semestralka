@@ -6,7 +6,7 @@
 
 const flags_type flags = {"-o", "--output"};
 
-int is_flag(char *flag){
+int is_flag(const char *flag){
 
     if (!flag){
         return 0;

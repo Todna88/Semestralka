@@ -46,11 +46,6 @@ struct processed_file *process_file(FILE *file){
 
     check_unused_variables(function, subject_to, generals);
 
-    /*print_generals(generals);*/
-    /*func_print_coefs(function, generals);*/
-    /*subj_print_coefs(subject_to, generals);*/
-    /*print_bounds(bounds, generals);*/
-
     divided_file_dealloc(&divided_file);
     return processed_file;
 
@@ -83,7 +78,7 @@ struct divided_file *divide_file(FILE *file){
 
         DELETE_COMMS(line)
 
-        label_line_len = strlen(line) + 1;
+        label_line_len = strlen(line) + END_CHAR_LEN;
 
         switch (identify_label(line))
         {
@@ -119,7 +114,7 @@ struct divided_file *divide_file(FILE *file){
         case 2:
             ++line_count;
 
-            if(line_count > 1){
+            if(line_count > MAX_LINE_COUNT){
                 error = SYNTAX_ERR;
                 goto err;
             }
@@ -133,7 +128,7 @@ struct divided_file *divide_file(FILE *file){
         case 3:
             ++line_count;
 
-            if(line_count > 1){
+            if(line_count > MAX_LINE_COUNT){
                 error = SYNTAX_ERR;
                 goto err;
             }
@@ -234,15 +229,15 @@ int subj_to_alloc(struct divided_file *file, const size_t line_len, const size_t
         return 0;
     }
 
-    new_lines[line_count - 1] = line_alloc(line_len, line);
+    file->subject_to_line_count = line_count;
 
-    if (!(new_lines[line_count - 1])){
-        free(new_lines);
+    new_lines[line_count - INDEXING_FROM_ZERO] = line_alloc(line_len, line);
+
+    if (!(new_lines[line_count - INDEXING_FROM_ZERO])){
         return 0;
     }
 
     file->subject_to = new_lines;
-    file->subject_to_line_count = line_count;
 
     return 1;
 }
@@ -280,14 +275,15 @@ int bound_alloc(struct divided_file *file, const size_t line_len, const size_t l
         return 0;
     }
 
-    new_lines[line_count - 1] = line_alloc(line_len, line);
+    file->bounds_line_count = line_count;
 
-    if (!(new_lines[line_count - 1])){
+    new_lines[line_count - INDEXING_FROM_ZERO] = line_alloc(line_len, line);
+
+    if (!(new_lines[line_count - INDEXING_FROM_ZERO])){
         return 0;
     }
 
     file->bounds = new_lines;
-    file->bounds_line_count = line_count;
 
     return 1;
 
@@ -307,15 +303,15 @@ int gen_alloc(struct divided_file *file, const size_t line_len, const size_t lin
         return 0;
     }
 
-    new_lines[line_count - 1] = line_alloc(line_len, line);
+    file->generals_line_count = line_count;
 
-    if (!(new_lines[line_count - 1])){
-        free(new_lines);
+    new_lines[line_count - INDEXING_FROM_ZERO] = line_alloc(line_len, line);
+
+    if (!(new_lines[line_count - INDEXING_FROM_ZERO])){
         return 0;
     }
 
     file->generals = new_lines;
-    file->generals_line_count = line_count;
 
     return 1;
 
@@ -364,35 +360,35 @@ void line_dealloc(char **line){
     return;
 }
 
-void divided_file_dealloc(struct divided_file **devided_file){
-    if(!devided_file || !(*devided_file)){
+void divided_file_dealloc(struct divided_file **divided_file){
+    if(!divided_file || !(*divided_file)){
         return;
     }
 
-    divided_file_deinit(*devided_file);
+    divided_file_deinit(*divided_file);
 
-    free(*devided_file);
-    *devided_file = NULL;
+    free(*divided_file);
+    *divided_file = NULL;
 
     return;
 }
 
-void divided_file_deinit(struct divided_file *devided_file){
-    if(!devided_file){
+void divided_file_deinit(struct divided_file *divided_file){
+    if(!divided_file){
         return;
     }
 
-    label_dealloc(&(devided_file->bounds), devided_file->bounds_line_count);
-    devided_file->bounds_line_count = 0;
+    label_dealloc(&(divided_file->bounds), divided_file->bounds_line_count);
+    divided_file->bounds_line_count = 0;
 
-    label_dealloc(&(devided_file->subject_to), devided_file->subject_to_line_count);
-    devided_file->subject_to_line_count = 0;
+    label_dealloc(&(divided_file->subject_to), divided_file->subject_to_line_count);
+    divided_file->subject_to_line_count = 0;
 
-    label_dealloc(&(devided_file->generals), devided_file->generals_line_count);
-    devided_file->generals_line_count = 0;
+    label_dealloc(&(divided_file->generals), divided_file->generals_line_count);
+    divided_file->generals_line_count = 0;
 
-    line_dealloc(&(devided_file->function));
-    devided_file->function_type = NULL;
+    line_dealloc(&(divided_file->function));
+    divided_file->function_type = NULL;
 }
 
 void label_dealloc(char ***label, const size_t line_count){
@@ -411,7 +407,7 @@ void label_dealloc(char ***label, const size_t line_count){
     return;
 }
 
-int check_mandatory_labels(struct divided_file *file){
+int check_mandatory_labels(const struct divided_file *file){
     if(!file){
         error = POINTER_ERR;
         return 0;
@@ -429,7 +425,7 @@ int check_end_file(FILE *file){
     char line[LINE_LENGTH];
 
     while (fgets(line, sizeof(line), file)) {
-        if(line[0] == '\n' || !strncmp(line, "\r\n", 2)){
+        if(line[0] == NEWLINE_CHAR || !strncmp(line, NEWLINE_WINDOWS, NEWLINE_WINDOWS_LEN)){
             continue;
         }
 

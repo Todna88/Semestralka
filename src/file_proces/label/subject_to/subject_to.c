@@ -1,6 +1,6 @@
 #include "subject_to.h"
 
-struct subject_to *process_subject_to(char **subject_to, size_t line_count, const struct generals *generals){
+struct subject_to *process_subject_to(char **subject_to, const size_t line_count, const struct generals *generals){
     struct subject_to *processed_subject_to = NULL;
     char *equation;
     size_t i, j;
@@ -49,9 +49,9 @@ struct subject_to *process_subject_to(char **subject_to, size_t line_count, cons
 
 int parse_equation(struct subject_to *subject_to, char *equation, const size_t id, const struct generals *generals){
     char *token, *ptr;
-    char lower[2] = "<";
-    char higher[2] = ">";
-    char equal[2] = "=";
+    const char lower[2] = "<";
+    const char higher[2] = ">";
+    const char equal[2] = "=";
 
     if (!subject_to || !equation){
         error = POINTER_ERR;
@@ -74,14 +74,14 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
             }
 
             else{     
-                if (*token == '='){
-                    subject_to->right_sides[id] = strtod(token + 1, &ptr);
+                if (*token == EQUAL){
+                    subject_to->right_sides[id] = strtod(token + EQUAL_LEN, &ptr);
                 }
                 else{
                     subject_to->right_sides[id] = strtod(token, &ptr);
                 }
 
-                if(*ptr != '\0'){
+                if(*ptr != ENDING_CHAR){
                     error = SYNTAX_ERR;
                     goto err;
                 }
@@ -92,7 +92,7 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
 
         if(subject_to->right_sides[id] < 0){
             subject_to->operators[id] = HIGHER;
-            subject_to->right_sides[id] = subject_to->right_sides[id] * -1.0;
+            subject_to->right_sides[id] = subject_to->right_sides[id] * NEGATIVE_MILTIPLIER;
             switch_signs(subject_to->coefs[id], generals->variables_count);
         }
 
@@ -114,8 +114,8 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
             }
 
             else{
-                if (*token == '='){
-                    subject_to->right_sides[id] = strtod(token + 1, &ptr);
+                if (*token == EQUAL){
+                    subject_to->right_sides[id] = strtod(token + EQUAL_LEN, &ptr);
                 }
                 else{
                     subject_to->right_sides[id] = strtod(token, &ptr);
@@ -127,7 +127,7 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
 
         if(subject_to->right_sides[id] < 0){
             subject_to->operators[id] = LOWER;
-            subject_to->right_sides[id] = subject_to->right_sides[id] * -1.0;
+            subject_to->right_sides[id] = subject_to->right_sides[id] * NEGATIVE_MILTIPLIER;
             switch_signs(subject_to->coefs[id], generals->variables_count);
         }
 
@@ -149,8 +149,8 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
             }
 
             else{
-                if (*token == '='){
-                    subject_to->right_sides[id] = strtod(token + 1, &ptr);
+                if (*token == EQUAL){
+                    subject_to->right_sides[id] = strtod(token + EQUAL_LEN, &ptr);
                 }
                 else{
                     subject_to->right_sides[id] = strtod(token, &ptr);
@@ -169,7 +169,7 @@ int parse_equation(struct subject_to *subject_to, char *equation, const size_t i
         return 0;  
 }
 
-struct subject_to *subject_to_alloc(size_t coef_count, size_t line_count){
+struct subject_to *subject_to_alloc(const size_t coef_count, const size_t line_count){
     struct subject_to *new_subject_to = NULL;
 
     new_subject_to = malloc(sizeof(*new_subject_to));
@@ -187,7 +187,7 @@ struct subject_to *subject_to_alloc(size_t coef_count, size_t line_count){
     return new_subject_to;
 }
 
-int subject_to_init(struct subject_to *subject_to, size_t coef_count, size_t line_count){
+int subject_to_init(struct subject_to *subject_to, const size_t coef_count, const size_t line_count){
     if(!subject_to){
         error = POINTER_ERR;
         return 0;
@@ -228,7 +228,7 @@ int subject_to_init(struct subject_to *subject_to, size_t coef_count, size_t lin
     return 1;
 }
 
-int coefs_alloc(double **coefs, size_t coef_count, size_t line_count){
+int coefs_alloc(double **coefs, const size_t coef_count, const size_t line_count){
     size_t i;
 
     if (!coefs){
@@ -250,7 +250,7 @@ int coefs_alloc(double **coefs, size_t coef_count, size_t line_count){
     return 1;
 }
 
-void coefs_dealloc(double **coefs, size_t line_count){
+void coefs_dealloc(double **coefs, const size_t line_count){
     size_t i;
 
     if (!coefs){
@@ -294,7 +294,7 @@ void subject_to_dealloc(struct subject_to **subject_to){
 }
 
 int control_subject_to(char *subject_to){
-    char *banned_chars = "^/:,";
+    const char *banned_chars = "^/:,";
 
     if(strpbrk(subject_to, banned_chars)){
         error = SYNTAX_ERR;
@@ -304,23 +304,7 @@ int control_subject_to(char *subject_to){
     return 1;
 }
 
-void subj_print_coefs(struct subject_to *subject_to, struct generals *generals){
-    size_t i, j;
-
-    if (!subject_to || !generals){
-        return;
-    }
-
-    for (i = 0; i < subject_to->line_count; ++i){
-        for (j = 0; j < generals->variables_count; ++j){
-            printf("Subject to coeficient of variable %s in line %lu is %f\n", generals->variables[j], i ,subject_to->coefs[i][j]);
-        } 
-    }
-    
-    return;   
-}
-
-int copy_sub_matrix(struct subject_to *subject_to, struct subject_to *smaller_subject_to, size_t var_count_bigger, size_t var_count_smaller){
+int copy_sub_matrix(struct subject_to *subject_to, const struct subject_to *smaller_subject_to, const size_t var_count_bigger, const size_t var_count_smaller){
     size_t i;
 
     if(!subject_to || !smaller_subject_to || (var_count_smaller > var_count_bigger)){
@@ -338,7 +322,7 @@ int copy_sub_matrix(struct subject_to *subject_to, struct subject_to *smaller_su
     return 1;
 }
 
-int check_line_syntax(char *line){
+int check_line_syntax(const char *line){
     size_t i;
     int j;
 
@@ -349,8 +333,8 @@ int check_line_syntax(char *line){
 
     i = 0;
     j = 0;
-    while (line[i] != '\0'){
-        if (line[i] == ':'){
+    while (line[i] != ENDING_CHAR){
+        if (line[i] == DOUBLE_DOT){
             ++j;
         }
         ++i;
@@ -364,7 +348,7 @@ int check_line_syntax(char *line){
     return 1;
 }
 
-void switch_signs(double *coefs, size_t var_count){
+void switch_signs(double *coefs, const size_t var_count){
     size_t i;
 
     if(!coefs || var_count == 0){
@@ -372,7 +356,7 @@ void switch_signs(double *coefs, size_t var_count){
     }
 
     for (i = 0; i < var_count; ++i){
-        coefs[i] = coefs[i] * -1.0;
+        coefs[i] = coefs[i] * NEGATIVE_MILTIPLIER;
     }
 
     return;

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(Semestralka LANGUAGES C)
-set(CMAKE_C_FLAGS "-Wall -Wextra -pedantic -ansi")
+set(CMAKE_C_FLAGS "-Wall -Wextra -pedantic -ansi -g")
 
 add_executable(lp
     src/lp.c

@@ -32,19 +32,19 @@ operation get_operation(const char operator){
     return NULL;
 }
 
-double sum(double a, double b){
+double sum(const double a, const double b){
     return a + b;
 }
 
-double sub(double a, double b){
+double sub(const double a, const double b){
     return a - b;
 }
 
-double mul(double a, double b){
+double mul(const double a, const double b){
     return a * b;
 }
 
-int array_mul(double *array, double multiplier, size_t arr_len){
+int array_mul(double *array, const double multiplier, const size_t arr_len){
     size_t i;
     if (!array || arr_len == 0){
         error = POINTER_ERR;
@@ -59,7 +59,7 @@ int array_mul(double *array, double multiplier, size_t arr_len){
     
 }
 
-int array_sum(double *array, double *array_2, size_t arr_len){
+int array_sum(double *array, const double *array_2, const size_t arr_len){
     size_t i;
     if (!array || !array_2 || arr_len == 0){
         error = POINTER_ERR;
@@ -74,7 +74,7 @@ int array_sum(double *array, double *array_2, size_t arr_len){
 }
 
 int is_operator(const char symbol){
-    if (symbol == '+' || symbol == '-' || symbol == '*'){
+    if (symbol == PLUS || symbol == MINUS || symbol == MULTIPLY){
         return 1;
     }
     

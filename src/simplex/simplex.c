@@ -1,6 +1,6 @@
 #include "simplex.h"
 
-int simplex(struct processed_file *processed_file, char *output_file_name){
+int simplex(struct processed_file *processed_file, const char *output_file_name){
     struct simplex_table *table = NULL;
 
     if(!processed_file){
@@ -27,6 +27,10 @@ int simplex(struct processed_file *processed_file, char *output_file_name){
     }
 
     if(!iterate(table)){
+        goto err;
+    }
+
+    if(!check_solution(table, processed_file->generals, processed_file->bounds)){
         goto err;
     }
 
@@ -62,7 +66,7 @@ int iterate(struct simplex_table *table){
     return 1;
 }
 
-struct simplex_table *add_variables(struct subject_to *subject_to, struct generals *generals){
+struct simplex_table *add_variables(const struct subject_to *subject_to, const struct generals *generals){
     size_t additional_variables_count;
     struct function *help_function = NULL;
     struct subject_to *help_subject_to = NULL;
@@ -106,7 +110,7 @@ struct simplex_table *add_variables(struct subject_to *subject_to, struct genera
     return table;
 }
 
-struct simplex_table *set_additional_variables(struct subject_to *help_subject_to, struct function *help_function, struct generals *generals, size_t additional_variables_count){
+struct simplex_table *set_additional_variables(struct subject_to *help_subject_to, struct function *help_function, const struct generals *generals, const size_t additional_variables_count){
     size_t i, current_var_count, artificial_vars_count;
     size_t *base = NULL;
     size_t *artificial_vars_ids = NULL;
@@ -136,19 +140,19 @@ struct simplex_table *set_additional_variables(struct subject_to *help_subject_t
     current_var_count = 0;
 
     for (i = 0; i < help_subject_to->line_count; ++i){
-        if (help_subject_to->operators[i] == '<'){
+        if (help_subject_to->operators[i] == LOWER){
 
-            help_subject_to->coefs[i][generals->variables_count + current_var_count] = 1.0;
+            help_subject_to->coefs[i][generals->variables_count + current_var_count] = DEFALUT_SLACK_VAR_VALUE;
             base[i] = generals->variables_count + current_var_count;
 
             ++current_var_count;
             continue;
         }
 
-        if (help_subject_to->operators[i] == '='){
+        if (help_subject_to->operators[i] == EQUAL){
 
-            help_subject_to->coefs[i][generals->variables_count + current_var_count] = 1.0;
-            help_function->coefs[generals->variables_count + current_var_count] = 1.0;
+            help_subject_to->coefs[i][generals->variables_count + current_var_count] = DEFALUT_SLACK_VAR_VALUE;
+            help_function->coefs[generals->variables_count + current_var_count] = DEFALUT_SLACK_VAR_VALUE;
             base[i] = generals->variables_count + current_var_count;
 
             artificial_vars_ids[artificial_vars_count] = generals->variables_count + current_var_count;
@@ -157,13 +161,13 @@ struct simplex_table *set_additional_variables(struct subject_to *help_subject_t
             continue;
         }
 
-        if (help_subject_to->operators[i] == '>'){
+        if (help_subject_to->operators[i] == HIGHER){
 
-            help_subject_to->coefs[i][generals->variables_count + current_var_count] = -1.0;
+            help_subject_to->coefs[i][generals->variables_count + current_var_count] = DEFALUT_SURPLEX_VAR_VALUE;
             ++current_var_count;
 
-            help_subject_to->coefs[i][generals->variables_count + current_var_count] = 1.0;
-            help_function->coefs[generals->variables_count + current_var_count] = 1.0;
+            help_subject_to->coefs[i][generals->variables_count + current_var_count] = DEFALUT_SLACK_VAR_VALUE;
+            help_function->coefs[generals->variables_count + current_var_count] = DEFALUT_SLACK_VAR_VALUE;
             base[i] = generals->variables_count + current_var_count;
 
             artificial_vars_ids[artificial_vars_count] = generals->variables_count + current_var_count;
@@ -191,23 +195,23 @@ struct simplex_table *set_additional_variables(struct subject_to *help_subject_t
     return table;
 }
 
-size_t count_additional_variables(struct subject_to *subject_to){
+size_t count_additional_variables(const struct subject_to *subject_to){
     size_t i, additional_variables_count;
 
     additional_variables_count = 0;
     for (i = 0; i < subject_to->line_count; ++i){
-        if (subject_to->operators[i] == '<'){
+        if (subject_to->operators[i] == LOWER){
             ++additional_variables_count;
             continue;
         }
 
-        if (subject_to->operators[i] == '='){
+        if (subject_to->operators[i] == EQUAL){
             ++additional_variables_count;
             continue;
         }
 
-        if (subject_to->operators[i] == '>'){
-            additional_variables_count += 2;
+        if (subject_to->operators[i] == HIGHER){
+            additional_variables_count += GRATER_ADD_VAR_COUNT;
             continue;
         } 
     }
@@ -216,7 +220,7 @@ size_t count_additional_variables(struct subject_to *subject_to){
 }
 
 
-struct simplex_table *simplex_table_alloc(struct function *function, struct subject_to *subject_to, size_t var_count, size_t *base_ids, size_t *artificial_vars_ids, size_t artificial_vars_count){
+struct simplex_table *simplex_table_alloc(const struct function *function, const struct subject_to *subject_to, size_t var_count, const size_t *base_ids, const size_t *artificial_vars_ids, size_t artificial_vars_count){
     struct simplex_table *new_table = NULL;
 
     if (!function || !subject_to || !base_ids || var_count == 0){
@@ -239,7 +243,7 @@ struct simplex_table *simplex_table_alloc(struct function *function, struct subj
     return new_table;
 }
 
-int simplex_table_init(struct simplex_table *table, struct function *function, struct subject_to *subject_to, size_t var_count, size_t *base_ids, size_t *artificial_vars_ids, size_t artificial_vars_count){
+int simplex_table_init(struct simplex_table *table, const struct function *function, const struct subject_to *subject_to, size_t var_count, const size_t *base_ids, const size_t *artificial_vars_ids, size_t artificial_vars_count){
     size_t i;
 
     if(!table || !function || !subject_to || !base_ids || var_count == 0){
@@ -247,8 +251,8 @@ int simplex_table_init(struct simplex_table *table, struct function *function, s
         return 0;
     }
 
-    table->cols = var_count + 1;
-    table->rows = subject_to->line_count + 1;
+    table->cols = var_count + TABLE_ROW_COL_CONST;
+    table->rows = subject_to->line_count + TABLE_ROW_COL_CONST;
     table->base = calloc(sizeof(size_t), subject_to->line_count);
 
     if (!table->base){
@@ -305,7 +309,7 @@ int simplex_table_init(struct simplex_table *table, struct function *function, s
     return 1;
 }
 
-int rows_alloc(double **coefs, size_t rows, size_t cols){
+int rows_alloc(double **coefs, const size_t rows, const size_t cols){
     size_t i;
 
     if(!coefs || rows == 0 || cols == 0){
@@ -326,7 +330,7 @@ int rows_alloc(double **coefs, size_t rows, size_t cols){
     return 1;
 }
 
-void rows_dealloc(double **coefs, size_t rows){
+void rows_dealloc(double **coefs, const size_t rows){
     size_t i;
 
     if(!coefs){
@@ -397,10 +401,10 @@ int set_base_zero(struct simplex_table *table){
         return 0;
     }
 
-    for (i = 0; i < table->rows - 1; ++i){
+    for (i = 0; i < table->rows - TABLE_ROW_COL_CONST; ++i){
         base_id = table->base[i];
-        mul_value = table->coefs[table->rows - 1][base_id] * -1.0;
-        if(!sum_rows(table, i, table->rows - 1, mul_value)){
+        mul_value = table->coefs[table->rows - TABLE_ROW_COL_CONST][base_id] * NEGATIVE_MILTIPLIER;
+        if(!sum_rows(table, i, table->rows - TABLE_ROW_COL_CONST, mul_value)){
             return 0;
         }
     }
@@ -408,7 +412,7 @@ int set_base_zero(struct simplex_table *table){
     return 1;
 }
 
-int sum_rows(struct simplex_table *table, size_t src_row, size_t dst_row, double multiplier){
+int sum_rows(struct simplex_table *table, const size_t src_row, const size_t dst_row, const double multiplier){
     size_t i;
 
     if(!table){
@@ -423,7 +427,7 @@ int sum_rows(struct simplex_table *table, size_t src_row, size_t dst_row, double
     return 1;
 }
 
-int check_non_negative_row(struct simplex_table *table){
+int check_non_negative_row(const struct simplex_table *table){
     size_t i;
 
     if(!table){
@@ -431,8 +435,8 @@ int check_non_negative_row(struct simplex_table *table){
         return -1;
     }
 
-    for (i = 0; i < table->cols - 1; i++){
-        if (table->coefs[table->rows - 1][i] < 0){
+    for (i = 0; i < table->cols - TABLE_ROW_COL_CONST; i++){
+        if (table->coefs[table->rows - TABLE_ROW_COL_CONST][i] < 0){
             return 1;
         }
     }
@@ -451,13 +455,13 @@ int replace_base(struct simplex_table *table){
     }
 
     pivot_col_id = get_pivot_col(table);
-    if(pivot_col_id == -1){
+    if(pivot_col_id == ERROR_RESULT){
         return 0;
     }
 
     ration = PLUSINF;
-    for (i = 0; i < table->rows - 1; ++i){
-        current_ration = table->coefs[i][table->cols - 1] / table->coefs[i][pivot_col_id];
+    for (i = 0; i < table->rows - TABLE_ROW_COL_CONST; ++i){
+        current_ration = table->coefs[i][table->cols - TABLE_ROW_COL_CONST] / table->coefs[i][pivot_col_id];
         if(is_plus_inf(current_ration)){
             continue;
         }
@@ -493,11 +497,12 @@ int replace_base(struct simplex_table *table){
 }
 
 
-int divide_row(struct simplex_table *table, size_t row_id, double divisor){
+int divide_row(struct simplex_table *table, const size_t row_id, const double divisor){
     size_t i;
 
     if (!table){
         error = POINTER_ERR;
+        return 0;
     }
 
     for ( i = 0; i < table->cols; i++){
@@ -519,9 +524,9 @@ int get_pivot_col(struct simplex_table *table){
 
     pivot_col_id = -2;
     value_pivot_col = 0;
-    for (i = 0; i < table->cols - 1; ++i){
-        if(value_pivot_col > table->coefs[table->rows - 1][i]){
-            value_pivot_col = table->coefs[table->rows - 1][i];
+    for (i = 0; i < table->cols - TABLE_ROW_COL_CONST; ++i){
+        if(value_pivot_col > table->coefs[table->rows - TABLE_ROW_COL_CONST][i]){
+            value_pivot_col = table->coefs[table->rows - TABLE_ROW_COL_CONST][i];
             pivot_col_id = i;
         }
     }
@@ -529,7 +534,7 @@ int get_pivot_col(struct simplex_table *table){
     return pivot_col_id;
 }
 
-int is_artificial(size_t id, size_t *artificial_variables_ids, size_t artificial_variables_count){
+int is_artificial(const size_t id, const size_t *artificial_variables_ids, const size_t artificial_variables_count){
     size_t i;
 
     if (!artificial_variables_ids){
@@ -554,7 +559,7 @@ int check_artificial_variables(const struct simplex_table *table){
         return 0;
     }
 
-    for (i = 0; i < table->rows - 1; ++i){
+    for (i = 0; i < table->rows - TABLE_ROW_COL_CONST; ++i){
         if (is_artificial(table->base[i], table->artificial_vars_ids, table->artificial_vars_count)){
             error = SOLUTION_ERR;
             return 0;
@@ -572,7 +577,7 @@ int phase_two_init(struct simplex_table *table, struct function *original_functi
         return 0;
     }
 
-    for (i = 0; i < table->cols - 1; ++i){
+    for (i = 0; i < table->cols - TABLE_ROW_COL_CONST; ++i){
         if(is_artificial(i, table->artificial_vars_ids, table->artificial_vars_count)){
 
             for (j = 0; j < table->rows; ++j){
@@ -581,20 +586,20 @@ int phase_two_init(struct simplex_table *table, struct function *original_functi
         }
 
         if(i < generals->variables_count){
-            table->coefs[table->rows - 1][i] = -1 * original_function->coefs[i];
+            table->coefs[table->rows - TABLE_ROW_COL_CONST][i] = NEGATIVE_MILTIPLIER * original_function->coefs[i];
         }
         else{
-            table->coefs[table->rows - 1][i] = 0;
+            table->coefs[table->rows - TABLE_ROW_COL_CONST][i] = 0;
         }
     }  
 
     return 1;
 }
 
-int is_in_base(const struct simplex_table *table, size_t id, size_t *row){
+int is_in_base(const struct simplex_table *table, const size_t id, size_t *row){
     size_t i;
 
-    for (i = 0; i < table->rows - 1; ++i){
+    for (i = 0; i < table->rows - TABLE_ROW_COL_CONST; ++i){
         if (table->base[i] == id){
             *row = i;
             return 1;
@@ -604,7 +609,55 @@ int is_in_base(const struct simplex_table *table, size_t id, size_t *row){
     return 0; 
 }
 
-int print_solution(const struct simplex_table *table, const struct generals *generals, char *output_file_path){
+int check_solution(const struct simplex_table *table, const struct generals *generals, const struct bounds *bounds){
+    size_t i, j;
+    size_t row[1];
+
+    if(!table || !generals || !bounds){
+        error = POINTER_ERR;
+        return 0;
+    }
+
+    for (i = 0; i < generals->variables_count; ++i){
+        if(is_in_base(table, i, row)){
+            for (j = 0; i < VALUES_ARRAY_COUNT; ++j){
+                if (is_nan(bounds->values[i][j])){
+                    continue;
+                }
+
+                switch (bounds->bounds[i][j]){
+                case HIGHER:
+                    if(table->coefs[*row][table->cols - TABLE_ROW_COL_CONST] < bounds->values[i][j]){
+                    error = SOLUTION_ERR;
+                    return 0;
+                    }
+                    break;
+                
+                case LOWER:
+                    if(table->coefs[*row][table->cols - TABLE_ROW_COL_CONST] > bounds->values[i][j]){
+                    error = SOLUTION_ERR;
+                    return 0;
+                    }
+                    break;
+
+                case EQUAL:
+                    if(table->coefs[*row][table->cols - TABLE_ROW_COL_CONST] != bounds->values[i][j]){}
+                    error = SOLUTION_ERR;
+                    return 0;
+                    }
+                    break;
+            }   
+        }
+
+        else{
+            continue;
+        }
+    }
+
+    return 1;
+}
+
+int print_solution(const struct simplex_table *table, const struct generals *generals, const char *output_file_path){
     size_t i;
     size_t row[1];
     FILE *output_file;

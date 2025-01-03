@@ -1,6 +1,6 @@
 #include "function.h"
 
-struct function *process_function(char *function, char *function_type, const struct generals *generals){
+struct function *process_function(char *function, const char *function_type, const struct generals *generals){
     struct function *processed_function = NULL;
     char splitter[2] = "=";
     char *token;
@@ -39,7 +39,7 @@ struct function *process_function(char *function, char *function_type, const str
         ++i;
     }
 
-    if ((i == 0) || (i > 2)){
+    if ((i == FIRST_ITERATION) || (i > THIRD_ITERATION)){
         function_dealloc(&processed_function);
         error = SYNTAX_ERR;
         goto err;
@@ -57,7 +57,7 @@ struct function *process_function(char *function, char *function_type, const str
 }
 
 int check_multiply(const char next_char){
-    if (!is_right_bracket(next_char) && !is_operator(next_char) && !isdigit(next_char) && !(next_char == '\0')){
+    if (!is_right_bracket(next_char) && !is_operator(next_char) && !isdigit(next_char) && !(next_char == ENDING_CHAR)){
         return 1;
     }
 
@@ -78,23 +78,23 @@ int parse_variable(struct stack *output_stack, struct stack *input_stack, const 
     }
     
     i = 0;
-    next_char = function[i + 1];
+    next_char = function[i + NEXT_CHAR];
 
     while ((!is_operator(next_char)) && (!is_left_bracket(next_char)) && (!is_right_bracket(next_char) && next_char)){
         ++i;
-        next_char = function[i + 1];
+        next_char = function[i + NEXT_CHAR];
     }
 
-    variable_name = calloc(sizeof(char), i + 2);
+    variable_name = calloc(sizeof(char), i + NEXT_CHAR + END_CHAR_LEN);
     if (!variable_name){
         error = MEMORY_ERR;
         goto err;
     }
     
-    strncpy(variable_name, function, i + 1);
+    strncpy(variable_name, function, i + END_CHAR_LEN);
 
     variable_id = get_variable(variable_name, generals);
-    if(variable_id == -1){
+    if(variable_id == ERROR_RESULT){
         printf("Unknown variable \'%s\'!\n", variable_name);
         free(variable_name);
         error = VARIABLE_ERR;
@@ -109,9 +109,9 @@ int parse_variable(struct stack *output_stack, struct stack *input_stack, const 
         goto err;
     }
 
-    coefs[variable_id] = 1.0;
+    coefs[variable_id] = DEFAULT_VAR_COEF;
 
-    if(!output_record_init(&new_record, coefs, generals->variables_count, 0)){
+    if(!output_record_init(&new_record, coefs, generals->variables_count, RECORD_VAR_VALUE)){
         free(coefs);
         goto err;
     }
@@ -127,7 +127,7 @@ int parse_variable(struct stack *output_stack, struct stack *input_stack, const 
         }
     }
 
-    return i + 1;
+    return i + NEXT_CHAR;
 
     err:
         return -1;
@@ -159,7 +159,7 @@ int parse_operator(struct stack *output_stack, struct stack *input_stack, const 
     stack_priority = get_priority(stack_out);
     current_priority = get_priority(current_char);
 
-    if(stack_priority == -1 || current_priority == -1){
+    if(stack_priority == ERROR_RESULT || current_priority == ERROR_RESULT){
         error = SYNTAX_ERR;
         return 0;
     }
@@ -213,7 +213,7 @@ int parse_operator(struct stack *output_stack, struct stack *input_stack, const 
 
     push:
     if (check_empty(output_stack)){
-        if(check_unary_operator(current_char, output_stack, input_stack) == -1){
+        if(check_unary_operator(current_char, output_stack, input_stack) == ERROR_RESULT){
             goto err;
         }
         return 1;
@@ -226,7 +226,7 @@ int parse_operator(struct stack *output_stack, struct stack *input_stack, const 
             goto err;
         }
 
-        output_record_init(&new_record, NULL, 0, -1);
+        output_record_init(&new_record, NULL, RECORD_NUM_ARR_LEN, NEGATIVE_MILTIPLIER);
         if(!stack_push(output_stack, &new_record)){
             goto err;
         }
@@ -261,7 +261,7 @@ int check_unary_operator(const char operator, struct stack *output_stack, struct
             break;
 
         case MINUS:
-            output_record_init(&new_record, NULL, 0, -1);
+            output_record_init(&new_record, NULL, RECORD_NUM_ARR_LEN, NEGATIVE_MILTIPLIER);
             if(!stack_push(output_stack, &new_record)){
                 return -1;
             }
@@ -277,6 +277,7 @@ int check_unary_operator(const char operator, struct stack *output_stack, struct
             error = SYNTAX_ERR;
             return -1;
             break;
+
         default:
             return 0;
             break;            
@@ -340,13 +341,14 @@ int parse_brackets(struct stack *output_stack, struct stack *input_stack, const 
         error = SYNTAX_ERR;
         goto err;
     }
+    
     return 1;
 
     err:
         return 0;
 }
 
-int evaluate(struct output_record *operand_1, struct output_record *operand_2, struct stack *output_stack, operation operator){
+int evaluate(struct output_record *operand_1, struct output_record *operand_2, struct stack *output_stack, const operation operator){
     if (!operand_1 || !operand_2 || !output_stack || !operator){
         error = POINTER_ERR;
         goto err;
@@ -453,23 +455,23 @@ int parse_number(struct stack *input_stack, struct stack *output_stack, const ch
     current_char = function[i];
     while (isdigit(current_char) || current_char == DOT){
 
-        if (current_char == DOT && dot_flag == 1){
+        if (current_char == DOT && dot_flag == DOT_WAS){
             error = SYNTAX_ERR;
             goto err;
         }
 
         else if (current_char == DOT){
-            dot_flag = 1;
+            dot_flag = DOT_WAS;
         }
 
-        if (dot_flag == 1 && i == 0){
+        if (dot_flag == DOT_WAS && i == FIRST_ITERATION){
             error = SYNTAX_ERR;
             goto err;
         }
 
         ++i;
         current_char = function[i];
-        previous_char = function[i - 1];
+        previous_char = function[i - NEXT_CHAR];
 
         if (previous_char == DOT && !isdigit(current_char)){
             error = SYNTAX_ERR;
@@ -477,7 +479,7 @@ int parse_number(struct stack *input_stack, struct stack *output_stack, const ch
         }
     }
 
-    number = calloc(sizeof(char), i + 1);
+    number = calloc(sizeof(char), i + END_CHAR_LEN);
     if (!number){
         error = MEMORY_ERR;
         goto err;
@@ -487,7 +489,7 @@ int parse_number(struct stack *input_stack, struct stack *output_stack, const ch
     num_value = strtod(number, &ptr);
     free(number);
 
-    if(!output_record_init(&new_record, NULL, 0, num_value)){
+    if(!output_record_init(&new_record, NULL, RECORD_NUM_ARR_LEN, num_value)){
         goto err;
     }
             
@@ -519,8 +521,8 @@ int output_record_init(struct output_record *output_record, double *coef_values,
     return 1;
 }
 
-int control_function(char *function){
-    char *banned_chars = "^></:,";
+int control_function(const char *function){
+    const char *banned_chars = "^></:,";
 
     if(strpbrk(function, banned_chars)){
         error = SYNTAX_ERR;
@@ -530,7 +532,7 @@ int control_function(char *function){
     return 1;
 }
 
-struct function *function_alloc(size_t coef_count){
+struct function *function_alloc(const size_t coef_count){
     struct function *new_function = NULL;
 
     new_function = malloc(sizeof(*new_function));
@@ -548,7 +550,7 @@ struct function *function_alloc(size_t coef_count){
     return new_function;
 }
 
-int function_init(struct function *function, size_t coef_count){
+int function_init(struct function *function, const size_t coef_count){
     if(!function){
         error = POINTER_ERR;
         return 0;
@@ -586,7 +588,7 @@ void function_dealloc(struct function **function){
 }
 
 int is_left_bracket(const char symbol){
-    if (symbol == '(' || symbol == '{' || symbol == '['){
+    if (symbol == LEFT_NORMAL_BRACKET || symbol == LEFT_COMPOUND_BRACKET || symbol == LEFT_SQUARE_BRACKET){
         return 1;
     }
     
@@ -594,7 +596,7 @@ int is_left_bracket(const char symbol){
 }
 
 int is_right_bracket(const char symbol){
-    if (symbol == ')' || symbol == '}' || symbol == ']'){
+    if (symbol == RIGHT_NORMAL_BRACKET || symbol == RIGHT_COMPOUND_BRACKET || symbol == RIGHT_SQUARE_BRACKET){
         return 1;
     }
     
@@ -605,8 +607,8 @@ int is_equal_bracket(const char left_bracket, const char right_bracket){
     
     switch (right_bracket){
 
-    case ')':
-        if (left_bracket == '('){
+    case RIGHT_NORMAL_BRACKET:
+        if (left_bracket == LEFT_NORMAL_BRACKET){
             return 1;
         }
 
@@ -614,8 +616,8 @@ int is_equal_bracket(const char left_bracket, const char right_bracket){
         
         break;
 
-    case '}':
-        if (left_bracket == '{'){
+    case RIGHT_COMPOUND_BRACKET:
+        if (left_bracket == LEFT_COMPOUND_BRACKET){
             return 1;
         }
 
@@ -623,8 +625,8 @@ int is_equal_bracket(const char left_bracket, const char right_bracket){
         
         break;
 
-    case ']':
-        if (left_bracket == '['){
+    case RIGHT_SQUARE_BRACKET:
+        if (left_bracket == LEFT_SQUARE_BRACKET){
             return 1;
         }
 
@@ -651,25 +653,11 @@ void delete_spaces(char *line){
         }
     }
 
-    line[count] = '\0';
+    line[count] = ENDING_CHAR;
     return;
 }
 
-void func_print_coefs(struct function *function, struct generals *generals){
-    size_t i;
-
-    if (!function || !generals){
-        return;
-    }
-
-    for (i = 0; i < generals->variables_count; ++i){
-        printf("Function coeficient of variable %s is %f\n", generals->variables[i], function->coefs[i]);
-    }
-
-    return;   
-}
-
-int check_stacks(double *coef_array, struct stack *input_stack, struct stack *output_stack, size_t var_count){
+int check_stacks(double *coef_array, struct stack *input_stack, struct stack *output_stack, const size_t var_count){
     char stack_out;
     struct output_record operand_1, operand_2, result;
     operation operator = NULL;
@@ -777,15 +765,15 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
 
     delete_spaces(expression);
 
-    while(expression[i] != '\0'){
+    while(expression[i] != ENDING_CHAR){
 
         current_char = expression[i];
-        next_char = expression[i + 1];
+        next_char = expression[i + NEXT_CHAR];
 
         if (isdigit(current_char) || current_char == DOT){
             parse_number_result = parse_number(input_stack, output_stack, &expression[i]);
 
-            if (parse_number_result == -1){
+            if (parse_number_result == ERROR_RESULT){
                 goto err;
             }
             i += parse_number_result;
@@ -799,7 +787,7 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
 
             unary_operator_result = check_unary_operator(next_char, output_stack, input_stack);
 
-            if (unary_operator_result == -1){
+            if (unary_operator_result == ERROR_RESULT){
                 goto err;
             }
 
@@ -809,7 +797,7 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
             }
 
             else{
-                i += 2;
+                i += SKIP_ONE_CHAR;
                 continue;
             }
         }
@@ -819,7 +807,7 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
                 goto err;
             }
 
-            if (is_operator(next_char) || is_right_bracket(next_char) || (next_char == '\0')){
+            if (is_operator(next_char) || is_right_bracket(next_char) || (next_char == ENDING_CHAR)){
                 ++i;
                 continue;
             }
@@ -842,7 +830,7 @@ int parse_artithmetic_expression(char *expression, double *coef_array, const str
         }
 
         parse_var_result = parse_variable(output_stack, input_stack, &expression[i], generals);
-        if (parse_var_result == -1){
+        if (parse_var_result == ERROR_RESULT){
             goto err;
         }
 
@@ -893,7 +881,7 @@ void dealloc_record(struct output_record *record){
     return; 
 }
 
-int check_type_of_task(struct function *function, char *function_type, const size_t var_count){
+int check_type_of_task(struct function *function, const char *function_type, const size_t var_count){
     size_t i;
 
     if(!function || !function_type){
@@ -903,7 +891,7 @@ int check_type_of_task(struct function *function, char *function_type, const siz
 
     if (!strcmp(function_type, MIN_TYPE)){
         for (i = 0; i < var_count; ++i){
-            function->coefs[i] = function->coefs[i] * -1.0;
+            function->coefs[i] = function->coefs[i] * NEGATIVE_MILTIPLIER;
         }
     }
 

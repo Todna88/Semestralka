@@ -2,7 +2,7 @@
 
 #include <strings.h>
 
-struct bounds *process_bounds(char **bounds, size_t line_count, const struct generals *generals){
+struct bounds *process_bounds(char **bounds, const size_t line_count, const struct generals *generals){
     struct bounds *processed_bounds = NULL;
     size_t i;
 
@@ -40,7 +40,7 @@ int parse_bound(struct bounds *bounds, char *line, const struct generals* genera
     double values[3];
     char constr[3] = {0, 0, 0};
     size_t i, equal_flag;
-    int variable_id = -1;
+    int variable_id = ERROR_VAR_ID;
 
     values[0] = NAN;
     values[1] = NAN;
@@ -66,7 +66,7 @@ int parse_bound(struct bounds *bounds, char *line, const struct generals* genera
     while(token != NULL){
         delete_spaces(token);
 
-        if(i > 2){
+        if(i > SECOND_ITERATION){
             error = SYNTAX_ERR;
             return 0;
         }
@@ -87,7 +87,7 @@ int parse_bound(struct bounds *bounds, char *line, const struct generals* genera
         ++i;
     }
 
-    if(!check_syntax(variable_id, values, constr, 3)){
+    if(!check_syntax(variable_id, values, constr, VALUES_ARRAY_COUNT)){
         return 0;
     }
     
@@ -98,7 +98,7 @@ int parse_bound(struct bounds *bounds, char *line, const struct generals* genera
     return 1;  
 }
 
-void cpy_values(struct bounds *bounds, double *values, int variable_id){
+void cpy_values(const struct bounds *bounds, const double *values, const int variable_id){
     size_t i, j;
     double equivalent_values[2];
 
@@ -106,7 +106,7 @@ void cpy_values(struct bounds *bounds, double *values, int variable_id){
     equivalent_values[1] = NAN;
 
     i = j = 0;
-    for (i = 0; i < 3; ++i){
+    for (i = 0; i < BOUNDS_ARRAY_COUNT; ++i){
         if(is_nan(values[i])){
             continue;
         }
@@ -120,7 +120,7 @@ void cpy_values(struct bounds *bounds, double *values, int variable_id){
     return;
 }
 
-int check_syntax(int variable_id, double *values, char *constr, size_t values_len){
+int check_syntax(const int variable_id, const double *values, const char *constr, const size_t values_len){
     size_t i;
 
     if (!values || !constr){
@@ -139,19 +139,19 @@ int check_syntax(int variable_id, double *values, char *constr, size_t values_le
     }
 
     i = 0;
-    for (i = 0; i < values_len - 1; ++i){
+    for (i = 0; i < values_len; ++i){
         if(!is_nan(values[i]) && !is_nan(values[i + 1])){
             error = SYNTAX_ERR;
             return 0;
         }
     }
 
-    if(constr[0] == '>' && is_plus_inf(values[0])){
+    if(constr[0] == HIGHER && is_plus_inf(values[0])){
         error = SYNTAX_ERR;
         return 0;
     }
 
-    if(constr[0] == '<' && is_minus_inf(values[0])){
+    if(constr[0] == LOWER && is_minus_inf(values[0])){
         error = SYNTAX_ERR;
         return 0;
     }
@@ -162,12 +162,12 @@ int check_syntax(int variable_id, double *values, char *constr, size_t values_le
             return 0;
         }
 
-        if(constr[0] == '>' && (values[0] > values[2])){
+        if(constr[0] == HIGHER && (values[0] > values[2])){
             error = SYNTAX_ERR;
             return 0;
         }
 
-        if(constr[0] == '<' && (values[0] < values[2])){
+        if(constr[0] == LOWER && (values[0] < values[2])){
             error = SYNTAX_ERR;
             return 0;
         }
@@ -176,7 +176,7 @@ int check_syntax(int variable_id, double *values, char *constr, size_t values_le
     return 1;
 }
 
-int parse_var(int *variable_id, size_t *equal_flag, char *constr, char *token, int i, const struct generals *generals, double *values){
+int parse_var(int *variable_id, size_t *equal_flag, char *constr, const char *token, const int i, const struct generals *generals, double *values){
     size_t j;
     char *variable_name = NULL;
 
@@ -195,7 +195,7 @@ int parse_var(int *variable_id, size_t *equal_flag, char *constr, char *token, i
         return 0;
     }
 
-    variable_name = calloc(sizeof(char), j + 1);
+    variable_name = calloc(sizeof(char), j + END_CHAR_LEN);
     if (!variable_name){
         error = MEMORY_ERR;
         return 0;
@@ -204,8 +204,8 @@ int parse_var(int *variable_id, size_t *equal_flag, char *constr, char *token, i
     strncpy(variable_name, token, j);
 
     *variable_id = get_variable(variable_name, generals);
-    if(*variable_id == -1){
-        if(!strcasecmp(variable_name, "infinity") || !strcasecmp(variable_name, "inf")){
+    if(*variable_id == ERROR_VAR_ID){
+        if(!strcasecmp(variable_name, INFINITY_STR) || !strcasecmp(variable_name, INF_STR)){
             if(!parse_num(*variable_id, equal_flag, values, constr, token, i)){
                 free(variable_name);
                 return 0;
@@ -230,31 +230,31 @@ int parse_var(int *variable_id, size_t *equal_flag, char *constr, char *token, i
     return 1;
 }
 
-int parse_oper(char last_char, char *constr, int i, size_t *equal_flag, int variable_id){
+int parse_oper(char last_char, char *constr, const int i, size_t *equal_flag, const int variable_id){
     if (!constr || !equal_flag){
         error = POINTER_ERR;
         return 0;
     }
 
     if (!last_char){
-        if (i == 0){
+        if (i == FIRST_ITERATION){
             *equal_flag = 1;
             constr[i] = EQUAL;
         }
 
-        else if(i == 2 && (*equal_flag) == 1){
+        else if(i == THIRD_ITERATION && (*equal_flag) == 1){
             error = SYNTAX_ERR;
             return 0;
         }
     }
 
     else{
-        if((i == 1 && (*equal_flag) == 1) || i == 2){
+        if((i == SECOND_ITERATION && (*equal_flag) == 1) || i == THIRD_ITERATION){
             error = SYNTAX_ERR;
             return 0;
         }
 
-        if (variable_id == -1){
+        if (variable_id == ERROR_VAR_ID){
             switch_operator(&last_char);
             if (!last_char){
                 error = SYNTAX_ERR;
@@ -277,7 +277,7 @@ int parse_oper(char last_char, char *constr, int i, size_t *equal_flag, int vari
     return 1;   
 }
 
-int parse_num(int variable_id, size_t *equal_flag, double *values, char *constr, char *token, int i){
+int parse_num(const int variable_id, size_t *equal_flag, double *values, char *constr, const char *token, const int i){
     char *ptr;
 
     if(!equal_flag || !constr || !token || !values){
@@ -294,8 +294,8 @@ int parse_num(int variable_id, size_t *equal_flag, double *values, char *constr,
     return 1; 
 }
 
-int check_operator(char operator){
-    if(operator == '>' || operator == '<'){
+int check_operator(const char operator){
+    if(operator == HIGHER || operator == LOWER){
         return 1;
     }
 
@@ -303,13 +303,13 @@ int check_operator(char operator){
 }
 
 void switch_operator(char *operator){
-    if (*operator == '<'){
-        *operator =  '>';
+    if (*operator == LOWER){
+        *operator =  HIGHER;
         return;
     }
 
-    if(*operator == '>'){
-        *operator =  '<';
+    if(*operator == HIGHER){
+        *operator =  LOWER;
         return;
     }
 
@@ -330,7 +330,7 @@ int parse_free(struct bounds *bounds, char *line, const struct generals* general
     token = strtok(line, SPACE);
 
     variable_id = get_variable(token, generals);
-    if(variable_id == -1){
+    if(variable_id == ERROR_VAR_ID){
         printf("Unknown variable \'%s\'!\n", token);
         error = VARIABLE_ERR;
         return 0;
@@ -354,7 +354,7 @@ int parse_free(struct bounds *bounds, char *line, const struct generals* general
 
     return 1;
 }
-int set_free_var(struct bounds *bounds, int variable_id){
+int set_free_var(struct bounds *bounds, const int variable_id){
     if (!bounds){
         error = POINTER_ERR;
         return 0;
@@ -370,13 +370,13 @@ int set_free_var(struct bounds *bounds, int variable_id){
 }
 
 int is_number(const char symbol){
-    if (isdigit(symbol) || (symbol == '-') || (symbol == '+')){
+    if (isdigit(symbol) || (symbol == MINUS) || (symbol == PLUS)){
         return 1;
     }
     return 0;
 }
 
-struct bounds *bounds_alloc(size_t var_count){
+struct bounds *bounds_alloc(const size_t var_count){
     struct bounds *new_bounds = NULL;
 
     new_bounds = malloc(sizeof(*new_bounds));
@@ -394,7 +394,7 @@ struct bounds *bounds_alloc(size_t var_count){
     return new_bounds;
 }
 
-int bounds_init(struct bounds *bounds, size_t var_count){
+int bounds_init(struct bounds *bounds, const size_t var_count){
     if (!bounds || var_count == 0){
         error = POINTER_ERR;
         return 0;
@@ -424,7 +424,7 @@ int bounds_init(struct bounds *bounds, size_t var_count){
     return 1;
 }
 
-int arrays_alloc(struct bounds *bounds, size_t var_count){
+int arrays_alloc(struct bounds *bounds, const size_t var_count){
     size_t i;
     if (!bounds || var_count == 0){
         error = POINTER_ERR;
@@ -440,7 +440,7 @@ int arrays_alloc(struct bounds *bounds, size_t var_count){
             return 0;
         }
 
-        bounds->bounds[i][0] = '>';
+        bounds->bounds[i][0] = HIGHER;
         
         bounds->values[i] = calloc(sizeof(double), VALUES_ARRAY_COUNT);
 
@@ -456,7 +456,7 @@ int arrays_alloc(struct bounds *bounds, size_t var_count){
     return 1;
 }
 
-void arrays_dealloc(struct bounds *bounds, size_t var_count){
+void arrays_dealloc(struct bounds *bounds, const size_t var_count){
     size_t i;
     if (!bounds || var_count == 0){
         return;
@@ -472,7 +472,7 @@ void arrays_dealloc(struct bounds *bounds, size_t var_count){
     return;
 }
 
-void bounds_deinit(struct bounds *bounds, size_t var_count){
+void bounds_deinit(struct bounds *bounds, const size_t var_count){
     if (!bounds || var_count == 0){
         return;
     }
@@ -486,7 +486,7 @@ void bounds_deinit(struct bounds *bounds, size_t var_count){
     return;
 }
 
-void bounds_dealloc(struct bounds **bounds, size_t var_count){
+void bounds_dealloc(struct bounds **bounds, const size_t var_count){
     if (!bounds || !(*bounds) || var_count == 0){
         return;
     }
@@ -497,14 +497,14 @@ void bounds_dealloc(struct bounds **bounds, size_t var_count){
     return;
 }
 
-void set_default_bounds(struct bounds *bounds, size_t var_count){
+void set_default_bounds(struct bounds *bounds, const size_t var_count){
     size_t i;
     if (!bounds || var_count == 0){
         return;
     }
 
     for (i = 0; i < var_count; ++i){
-        bounds->bounds[i][0] = '>';
+        bounds->bounds[i][0] = HIGHER;
         bounds->bounds[i][1] = 0;
 
         bounds->values[i][0] = 0;
@@ -514,7 +514,7 @@ void set_default_bounds(struct bounds *bounds, size_t var_count){
     return;
 }
 
-int is_nan(double value){
+int is_nan(const double value){
     if (value != value) {
         return 1;
     }
@@ -522,51 +522,26 @@ int is_nan(double value){
     return 0;
 }
 
-int is_plus_inf(double value){
+int is_plus_inf(const double value){
     union Infinity infinity;
     
     infinity.d = value;
 
-    if (infinity.l == 9218868437227405312){
+    if (infinity.l == PLUSSINF_LONG){
         return 1;
     }
 
     return 0;  
 }
 
-int is_minus_inf(double value){
+int is_minus_inf(const double value){
     union Infinity infinity;
     
     infinity.d = value;    
 
-    if (infinity.l == -4503599627370496){
+    if (infinity.l == MINUSINF_LONG){
         return 1;
     }
 
     return 0;
-}
-
-void print_bounds(struct bounds *bounds, struct generals *generals){
-    size_t i,j,k;
-
-    if(!bounds || !generals){
-        return;
-    }
-
-    k = 0;
-    for (i = 0; i < generals->variables_count; ++i){
-        for (j = 0; j < 2; ++j){
-            if(is_nan(bounds->values[i][j])){
-                ++k;
-                continue;
-            }
-
-            printf("Bound of variable %s is %s %c %f\n", generals->variables[i], generals->variables[i], bounds->bounds[i][j], bounds->values[i][j]);
-        }
-
-        if (k == j){
-            printf("Variable %s is free!\n", generals->variables[i]);
-        }
-        k = 0;    
-    } 
 }

@@ -15,7 +15,8 @@
         "subject_to.h": "c",
         "strings.h": "c",
         "algorithm": "c",
-        "simplex.h": "c"
+        "simplex.h": "c",
+        "bounds.h": "c"
     },
     "C_Cpp.dimInactiveRegions": true
 }

@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
-            "args": ["--output", ".val_output_valid_2.txt", "../src/vyroba.lp"],
+            "args": ["../src/vyroba.lp"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
             "externalConsole": false,

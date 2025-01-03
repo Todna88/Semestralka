@@ -37,32 +37,15 @@ CMakeFiles/lp.dir/src/file_proces/file_proces.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Se
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/subject_to.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h
+  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h
 
 CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.c \
   /usr/include/stdc-predef.h \
@@ -100,7 +83,6 @@ CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.o: /mnt/d/Škola/FAV/ZS_
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -142,7 +124,6 @@ CMakeFiles/lp.dir/src/file_proces/label/function/function.c.o: /mnt/d/Škola/FAV
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -285,7 +266,6 @@ CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.o: /mnt/d/Škola
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -358,63 +338,17 @@ CMakeFiles/lp.dir/src/lp.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/lp.c \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/subject_to.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/simplex/simplex.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/file_proces.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/subject_to.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/flags/flags.h
 
 CMakeFiles/lp.dir/src/node/node.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/node/node.c \
@@ -486,32 +420,15 @@ CMakeFiles/lp.dir/src/simplex/simplex.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralk
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/subject_to/subject_to.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h \
   /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/bounds/bounds.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/operators.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/generals/generals.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/label.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/errors.h \
-  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.h
+  /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/file_proces/label/function/function.h
 
 CMakeFiles/lp.dir/src/stack/stack.c.o: /mnt/d/Škola/FAV/ZS_02/pc/Semestralka/src/stack/stack.c \
   /usr/include/stdc-predef.h \
