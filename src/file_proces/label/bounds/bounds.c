@@ -523,11 +523,12 @@ int is_nan(const double value){
 }
 
 int is_plus_inf(const double value){
+    const long plus_inf = 9218868437227405312;
     union Infinity infinity;
     
     infinity.d = value;
 
-    if (infinity.l == PLUSSINF_LONG){
+    if (infinity.l == plus_inf){
         return 1;
     }
 
@@ -535,11 +536,12 @@ int is_plus_inf(const double value){
 }
 
 int is_minus_inf(const double value){
+    const long minus_inf = -4503599627370496;
     union Infinity infinity;
     
     infinity.d = value;    
 
-    if (infinity.l == MINUSINF_LONG){
+    if (infinity.l == minus_inf){
         return 1;
     }
 

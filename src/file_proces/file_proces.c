@@ -229,15 +229,14 @@ int subj_to_alloc(struct divided_file *file, const size_t line_len, const size_t
         return 0;
     }
 
-    file->subject_to_line_count = line_count;
-
     new_lines[line_count - INDEXING_FROM_ZERO] = line_alloc(line_len, line);
+
+    file->subject_to_line_count = line_count;
+    file->subject_to = new_lines;
 
     if (!(new_lines[line_count - INDEXING_FROM_ZERO])){
         return 0;
     }
-
-    file->subject_to = new_lines;
 
     return 1;
 }
@@ -275,18 +274,16 @@ int bound_alloc(struct divided_file *file, const size_t line_len, const size_t l
         return 0;
     }
 
-    file->bounds_line_count = line_count;
-
     new_lines[line_count - INDEXING_FROM_ZERO] = line_alloc(line_len, line);
+
+    file->bounds_line_count = line_count;
+    file->bounds = new_lines;
 
     if (!(new_lines[line_count - INDEXING_FROM_ZERO])){
         return 0;
     }
 
-    file->bounds = new_lines;
-
     return 1;
-
 }
 
 int gen_alloc(struct divided_file *file, const size_t line_len, const size_t line_count, const char *line){
@@ -303,18 +300,16 @@ int gen_alloc(struct divided_file *file, const size_t line_len, const size_t lin
         return 0;
     }
 
-    file->generals_line_count = line_count;
-
     new_lines[line_count - INDEXING_FROM_ZERO] = line_alloc(line_len, line);
+
+    file->generals_line_count = line_count;
+    file->generals = new_lines;
 
     if (!(new_lines[line_count - INDEXING_FROM_ZERO])){
         return 0;
     }
 
-    file->generals = new_lines;
-
     return 1;
-
 }
 
 char *line_alloc(const size_t line_len, const char *line){
@@ -333,6 +328,7 @@ char *line_alloc(const size_t line_len, const char *line){
 
     if(!line_init(new_line, line, line_len)){
         free(new_line);
+        new_line = NULL;
         return NULL;
     }
 

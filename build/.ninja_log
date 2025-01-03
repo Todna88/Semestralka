@@ -1,10 +1,17 @@
 # ninja log v6
-19	259	7522886655645165	CMakeFiles/stack.dir/src/stack_check.c.obj	ff3865fd5d6457d0
+30	920	7576205597762174	CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj	e00c04cb1e1521d9
+16	911	7576205597611623	CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj	6ddcf4fad2cbc7a2
+819	1290	7576205605661671	CMakeFiles/lp.dir/src/simplex/simplex.c.obj	e13366c70869fbed
 36	291	7522886655810116	CMakeFiles/stack.dir/src/stack/stack.c.obj	dfe79bf43658be8b
-489	703	7530327565735458	lp.exe	bd5f815945121480
+781	1270	7576205605276902	CMakeFiles/lp.dir/src/file_proces/label/bounds/bounds.c.obj	dfb9aa33e1ab3b81
 53	266	7522886655925619	CMakeFiles/stack.dir/src/node/node.c.obj	15845108a8581c19
-109	399	7530327561936217	CMakeFiles/lp.dir/src/file_proces/label/label.c.obj	7843c0b87c14be60
-97	440	7530327561802338	CMakeFiles/lp.dir/src/flags/flags.c.obj	5ddef105ba4ad4da
-75	434	7530327561600669	CMakeFiles/lp.dir/src/lp.c.obj	1317b6fbe97fbffa
-87	457	7530327561720843	CMakeFiles/lp.dir/src/file_proces/file_proces.c.obj	f560b754993393f2
-120	489	7530327562046653	CMakeFiles/lp.dir/src/file_proces/label/generals/generals.c.obj	6aac7935e750e516
+19	259	7522886655645165	CMakeFiles/stack.dir/src/stack_check.c.obj	ff3865fd5d6457d0
+53	825	7576205598000595	CMakeFiles/lp.dir/src/file_proces/label/subject_to/subject_to.c.obj	2b15c4cd2f1009a1
+49	916	7576205597940374	CMakeFiles/lp.dir/src/file_proces/label/function/operators.c.obj	8163e0d57cf28066
+26	915	7576205597722036	CMakeFiles/lp.dir/src/file_proces/label/label.c.obj	1ade2618479adf62
+44	1001	7576205597900120	CMakeFiles/lp.dir/src/file_proces/label/function/function.c.obj	a55323e4e86a6079
+1291	1549	7576205610375159	lp.exe	230327a3acb28247
+20	819	7576205597671828	CMakeFiles/lp.dir/src/flags/flags.c.obj	c05babdf7c1a94a
+35	903	7576205597802320	CMakeFiles/lp.dir/src/stack/stack.c.obj	38ba9efd60e5a0ef
+39	1033	7576205597859963	CMakeFiles/lp.dir/src/node/node.c.obj	7c028771c6db4f61
+10	781	7576205597569918	CMakeFiles/lp.dir/src/lp.c.obj	f18e3ff5dae9911b

@@ -19,8 +19,6 @@
 #define NAN 0.0 / 0.0
 #define MINUSINF -1.0 / 0.0
 #define PLUSINF 1.0 / 0.0
-#define MINUSINF_LONG -4503599627370496
-#define PLUSSINF_LONG 9218868437227405312
 #define INFINITY_STR "Infinity"
 #define INF_STR "Inf"
 
